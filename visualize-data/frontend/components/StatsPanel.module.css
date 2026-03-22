@@ -1,0 +1,65 @@
+.panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(15, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 143, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px 24px;
+  min-width: 220px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4f8fff;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.stat:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.connected {
+  background: rgba(29, 209, 161, 0.2);
+  color: #1dd1a1;
+}
+
+.connecting {
+  background: rgba(254, 202, 87, 0.2);
+  color: #feca57;
+}
+
+.disconnected {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}

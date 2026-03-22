@@ -1,0 +1,3627 @@
+
+================================================================================
+OPTUNA NETWORK OPTIMIZATION (NS-3 KAFKA INTEGRATION)
+================================================================================
+Kafka Broker: localhost:9092
+Simulation ID: basic-sim
+N Trials: 200
+Log File: logs_folder/optuna_ns3_integrated_20251201_214007.txt
+Training Data Dir: training_data
+================================================================================
+
+✗ Error loading config file: [Errno 2] No such file or directory: 'config-simulation.json'
+  Using default configuration.
+
+================================================================================
+NETWORK OPTIMIZER INITIALIZED (NS-3 KAFKA INTEGRATION)
+================================================================================
+Kafka Broker: localhost:9092
+Kafka Topics: ns3-metrics (receive), optimization-commands (send)
+Simulation ID: basic-sim
+Evaluation Window: 5s
+API Base URL: http://localhost:8000
+Training Data Dir: training_data
+Available Channels: 43 (20/40/80 MHz)
+================================================================================
+
+
+============================================================
+VERIFYING KAFKA CONNECTIVITY
+============================================================
+
+1. Testing Kafka Consumer (metrics receiver)...
+✓ Connected to Kafka consumer: ns3-metrics
+   ✓ Consumer connected
+
+2. Testing Kafka Producer (config sender)...
+  [Kafka TX] ✓ Connected to broker: localhost:9092
+  [Kafka TX]   Topic: optimization-commands
+   ✓ Producer connected
+
+3. Sending test message to optimization-commands topic...
+   ✓ Test message sent to partition 0, offset 1814
+
+============================================================
+KAFKA CONNECTIVITY VERIFIED
+============================================================
+
+
+============================================================
+DISCOVERING AP BSSIDs FROM NS-3
+============================================================
+✓ Connected to Kafka consumer: ns3-metrics
+  Waiting for initial NS-3 metrics...
+✓ Discovered 4 BSSIDs from NS-3:
+    AP1: 00:00:00:00:00:01
+    AP2: 00:00:00:00:00:02
+    AP3: 00:00:00:00:00:03
+    AP4: 00:00:00:00:00:04
+  Adjusting num_aps from 6 to 4
+============================================================
+
+================================================================================
+SINGLE-AP OPTIMIZATION MODE
+================================================================================
+Each trial randomly selects ONE AP to optimize
+
+Initial Configuration:
+  Channels: [36, 40, 44, 36]
+  TX Power: [20.0, 20.0, 20.0, 20.0]
+  OBSS-PD: [-50.0, -50.0, -50.0, -50.0]
+  BSSIDs: ['00:00:00:00:00:01', '00:00:00:00:00:02', '00:00:00:00:00:03', '00:00:00:00:00:04']
+================================================================================
+
+Generated AP coordinates: {'AP1': [6.0, 0.0], 'AP2': [-4.2, -6.0], 'AP3': [4.4, 4.2], 'AP4': [-9.6, -4.9]}
+
+
+
+################################################################################
+TRIAL #1 - PLANNER ID #22a2dccb4960
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=136, TX=24.4dBm, OBSS-PD=-65.4dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  AP 2 (00:00:00:00:00:02): CH=136, TX=24.4dBm, OBSS-PD=-65.4dBm
+  AP 3 (00:00:00:00:00:03): CH=44, TX=20.0dBm, OBSS-PD=-50.0dBm
+  AP 4 (00:00:00:00:00:04): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1815
+    AP2 (00:00:00:00:00:02): CH=136 (20MHz), TX=24.4dBm, OBSS-PD=-65.4dBm
+      ✓ Sent to partition 0, offset 1816
+    AP3 (00:00:00:00:00:03): CH=44 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1817
+    AP4 (00:00:00:00:00:04): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1818
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [36, 136, 44, 36])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [36, 136, 44, 36]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 36, Clients: 5
+    p50 Throughput: 32.40 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.8650
+    p95 RTT: 750.00 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 136, Clients: 6
+    p50 Throughput: 27.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.9500
+    p95 RTT: 750.00 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 44, Clients: 4
+    p50 Throughput: 33.45 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3550
+    p95 RTT: 750.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 36, Clients: 6
+    p50 Throughput: 27.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.9250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.1375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.7737
+Global p95 RTT: 750.0000 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.2847
+************************************************************
+
+  ✓ Training pair saved (total: 1)
+
+
+
+################################################################################
+TRIAL #2 - PLANNER ID #b73562f6e87d
+################################################################################
+
+  SELECTED AP 3 for optimization
+  AP 3 NEW: CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  AP 2 (00:00:00:00:00:02): CH=136, TX=24.4dBm, OBSS-PD=-65.4dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1819
+    AP2 (00:00:00:00:00:02): CH=136 (20MHz), TX=24.4dBm, OBSS-PD=-65.4dBm
+      ✓ Sent to partition 0, offset 1820
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1821
+    AP4 (00:00:00:00:00:04): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1822
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [36, 136, 46, 36])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [36, 136, 46, 36]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 36, Clients: 5
+    p50 Throughput: 31.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.8500
+    p95 RTT: 734.59 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 136, Clients: 6
+    p50 Throughput: 32.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.8500
+    p95 RTT: 750.00 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 35.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1700
+    p95 RTT: 714.25 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 36, Clients: 6
+    p50 Throughput: 28.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.7500
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 32.2000 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.6550
+Global p95 RTT: 737.2125 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.3369
+************************************************************
+
+  ✓ Training pair saved (total: 2)
+NEW BEST OBJECTIVE!
+Previous Best: 0.2847
+New Best: 0.3369
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.2847
+Candidate:    0.3369
+Uplift:       +0.0522
+Propensity:   0.792
+DR Estimate:  0.3369
+80% CI Lower: -0.0118
+✗ BLOCKED - Lower bound -0.0118 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #3 - PLANNER ID #24c7db3b09f7
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=48, TX=23.4dBm, OBSS-PD=-68.0dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=48, TX=23.4dBm, OBSS-PD=-68.0dBm
+  AP 2 (00:00:00:00:00:02): CH=136, TX=24.4dBm, OBSS-PD=-65.4dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=48 (20MHz), TX=23.4dBm, OBSS-PD=-68.0dBm
+      ✓ Sent to partition 0, offset 1823
+    AP2 (00:00:00:00:00:02): CH=136 (20MHz), TX=24.4dBm, OBSS-PD=-65.4dBm
+      ✓ Sent to partition 0, offset 1824
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1825
+    AP4 (00:00:00:00:00:04): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1826
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [48, 136, 46, 36])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [48, 136, 46, 36]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 48, Clients: 5
+    p50 Throughput: 34.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 692.55 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 136, Clients: 6
+    p50 Throughput: 32.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.8250
+    p95 RTT: 750.00 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 33.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0850
+    p95 RTT: 506.44 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 36, Clients: 6
+    p50 Throughput: 27.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4000
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.7125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.4337
+Global p95 RTT: 674.7487 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.4292
+************************************************************
+
+  ✓ Training pair saved (total: 3)
+NEW BEST OBJECTIVE!
+Previous Best: 0.3369
+New Best: 0.4292
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.2847
+Candidate:    0.4292
+Uplift:       +0.1446
+Propensity:   0.732
+DR Estimate:  0.4687
+80% CI Lower: +0.1394
+✓ PASSED - Lower bound +0.1394 ≥ threshold +0.0200
+================================================================================
+
+
+================================================================================
+IMPROVEMENT REPORT PREPARED (Planner Version: 1)
+================================================================================
+Previous Best: 0.3369
+New Best: 0.4292
+Expected Change: +0.0924
+================================================================================
+
+
+✓ Config deployed - baseline updated to 0.4292
+
+
+
+
+################################################################################
+TRIAL #4 - PLANNER ID #d36cf7c55ff3
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=118, TX=13.2dBm, OBSS-PD=-60.6dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=48, TX=23.4dBm, OBSS-PD=-68.0dBm
+  AP 2 (00:00:00:00:00:02): CH=118, TX=13.2dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=48 (20MHz), TX=23.4dBm, OBSS-PD=-68.0dBm
+      ✓ Sent to partition 0, offset 1827
+    AP2 (00:00:00:00:00:02): CH=118 (40MHz), TX=13.2dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1828
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1829
+    AP4 (00:00:00:00:00:04): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1830
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [48, 118, 46, 36])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [48, 118, 46, 36]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 48, Clients: 5
+    p50 Throughput: 31.05 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1700
+    p95 RTT: 536.72 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 118, Clients: 6
+    p50 Throughput: 34.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.7750
+    p95 RTT: 750.00 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 32.55 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 254.39 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 36, Clients: 6
+    p50 Throughput: 28.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2750
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.6125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.3050
+Global p95 RTT: 572.7787 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.5012
+************************************************************
+
+  ✓ Training pair saved (total: 4)
+NEW BEST OBJECTIVE!
+Previous Best: 0.4292
+New Best: 0.5012
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.4292
+Candidate:    0.5012
+Uplift:       +0.0719
+Propensity:   0.659
+DR Estimate:  0.5783
+80% CI Lower: +0.0293
+✓ PASSED - Lower bound +0.0293 ≥ threshold +0.0200
+================================================================================
+
+
+================================================================================
+IMPROVEMENT REPORT PREPARED (Planner Version: 2)
+================================================================================
+Previous Best: 0.4292
+New Best: 0.5012
+Expected Change: +0.0719
+================================================================================
+
+
+✓ Config deployed - baseline updated to 0.5012
+
+
+
+
+################################################################################
+TRIAL #5 - PLANNER ID #972888d7cb46
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=159, TX=15.5dBm, OBSS-PD=-76.4dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=159, TX=15.5dBm, OBSS-PD=-76.4dBm
+  AP 2 (00:00:00:00:00:02): CH=118, TX=13.2dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=36, TX=20.0dBm, OBSS-PD=-50.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=159 (40MHz), TX=15.5dBm, OBSS-PD=-76.4dBm
+      ✓ Sent to partition 0, offset 1831
+    AP2 (00:00:00:00:00:02): CH=118 (40MHz), TX=13.2dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1832
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1833
+    AP4 (00:00:00:00:00:04): CH=36 (20MHz), TX=20.0dBm, OBSS-PD=-50.0dBm
+      ✓ Sent to partition 0, offset 1834
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [159, 118, 46, 36])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [159, 118, 46, 36]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 159, Clients: 5
+    p50 Throughput: 32.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0850
+    p95 RTT: 269.52 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 118, Clients: 6
+    p50 Throughput: 31.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.7750
+    p95 RTT: 489.32 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 30.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 128.07 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 36, Clients: 6
+    p50 Throughput: 28.55 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.6250 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.2963
+Global p95 RTT: 409.2300 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.5444
+************************************************************
+
+  ✓ Training pair saved (total: 5)
+NEW BEST OBJECTIVE!
+Previous Best: 0.5012
+New Best: 0.5444
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.5012
+Candidate:    0.5444
+Uplift:       +0.0432
+Propensity:   0.647
+DR Estimate:  0.6055
+80% CI Lower: -0.0474
+✗ BLOCKED - Lower bound -0.0474 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #6 - PLANNER ID #828bab880ae0
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=64, TX=16.7dBm, OBSS-PD=-69.5dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=159, TX=15.5dBm, OBSS-PD=-76.4dBm
+  AP 2 (00:00:00:00:00:02): CH=118, TX=13.2dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=64, TX=16.7dBm, OBSS-PD=-69.5dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=159 (40MHz), TX=15.5dBm, OBSS-PD=-76.4dBm
+      ✓ Sent to partition 0, offset 1835
+    AP2 (00:00:00:00:00:02): CH=118 (40MHz), TX=13.2dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1836
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1837
+    AP4 (00:00:00:00:00:04): CH=64 (20MHz), TX=16.7dBm, OBSS-PD=-69.5dBm
+      ✓ Sent to partition 0, offset 1838
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [159, 118, 46, 64])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [159, 118, 46, 64]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 159, Clients: 5
+    p50 Throughput: 30.80 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0850
+    p95 RTT: 135.66 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 118, Clients: 6
+    p50 Throughput: 31.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3750
+    p95 RTT: 628.95 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 30.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 64.89 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 64, Clients: 6
+    p50 Throughput: 29.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1750
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.4000 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1588
+Global p95 RTT: 394.8763 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.5955
+************************************************************
+
+  ✓ Training pair saved (total: 6)
+NEW BEST OBJECTIVE!
+Previous Best: 0.5444
+New Best: 0.5955
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.5012
+Candidate:    0.5955
+Uplift:       +0.0944
+Propensity:   0.549
+DR Estimate:  0.7197
+80% CI Lower: +0.0100
+✗ BLOCKED - Lower bound +0.0100 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #7 - PLANNER ID #3f62a1679888
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=118, TX=13.2dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=64, TX=16.7dBm, OBSS-PD=-69.5dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1839
+    AP2 (00:00:00:00:00:02): CH=118 (40MHz), TX=13.2dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1840
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1841
+    AP4 (00:00:00:00:00:04): CH=64 (20MHz), TX=16.7dBm, OBSS-PD=-69.5dBm
+      ✓ Sent to partition 0, offset 1842
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 118, 46, 64])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 118, 46, 64]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 30.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 69.25 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 118, Clients: 6
+    p50 Throughput: 30.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1500
+    p95 RTT: 596.35 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 31.65 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 33.25 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 64, Clients: 6
+    p50 Throughput: 27.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2500
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.0000 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1000
+Global p95 RTT: 362.2150 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6234
+************************************************************
+
+  ✓ Training pair saved (total: 7)
+NEW BEST OBJECTIVE!
+Previous Best: 0.5955
+New Best: 0.6234
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.5012
+Candidate:    0.6234
+Uplift:       +0.1223
+Propensity:   0.611
+DR Estimate:  0.7330
+80% CI Lower: -0.0085
+✗ BLOCKED - Lower bound -0.0085 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #8 - PLANNER ID #ed460a69029d
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=56, TX=16.5dBm, OBSS-PD=-72.7dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=56, TX=16.5dBm, OBSS-PD=-72.7dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=64, TX=16.7dBm, OBSS-PD=-69.5dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1843
+    AP2 (00:00:00:00:00:02): CH=56 (20MHz), TX=16.5dBm, OBSS-PD=-72.7dBm
+      ✓ Sent to partition 0, offset 1844
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1845
+    AP4 (00:00:00:00:00:04): CH=64 (20MHz), TX=16.7dBm, OBSS-PD=-69.5dBm
+      ✓ Sent to partition 0, offset 1846
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 56, 46, 64])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 56, 46, 64]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 29.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 36.77 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 56, Clients: 6
+    p50 Throughput: 30.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1750
+    p95 RTT: 419.85 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 31.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 17.59 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 64, Clients: 6
+    p50 Throughput: 30.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.4750 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1500
+Global p95 RTT: 306.0537 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6225
+************************************************************
+
+  ✓ Training pair saved (total: 8)
+
+
+
+################################################################################
+TRIAL #9 - PLANNER ID #03078562f931
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=56, TX=16.5dBm, OBSS-PD=-72.7dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1847
+    AP2 (00:00:00:00:00:02): CH=56 (20MHz), TX=16.5dBm, OBSS-PD=-72.7dBm
+      ✓ Sent to partition 0, offset 1848
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1849
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1850
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 56, 46, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 56, 46, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 20.41 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 56, Clients: 6
+    p50 Throughput: 30.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 290.20 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 31.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 9.71 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2000
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.4125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0750
+Global p95 RTT: 267.5813 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6588
+************************************************************
+
+  ✓ Training pair saved (total: 9)
+NEW BEST OBJECTIVE!
+Previous Best: 0.6234
+New Best: 0.6588
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.5012
+Candidate:    0.6588
+Uplift:       +0.1577
+Propensity:   0.580
+DR Estimate:  0.7747
+80% CI Lower: +0.0025
+✗ BLOCKED - Lower bound +0.0025 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #10 - PLANNER ID #ba5fcd3e7050
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=157, TX=20.1dBm, OBSS-PD=-79.1dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=157, TX=20.1dBm, OBSS-PD=-79.1dBm
+  AP 3 (00:00:00:00:00:03): CH=46, TX=14.9dBm, OBSS-PD=-76.9dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1851
+    AP2 (00:00:00:00:00:02): CH=157 (20MHz), TX=20.1dBm, OBSS-PD=-79.1dBm
+      ✓ Sent to partition 0, offset 1852
+    AP3 (00:00:00:00:00:03): CH=46 (40MHz), TX=14.9dBm, OBSS-PD=-76.9dBm
+      ✓ Sent to partition 0, offset 1853
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1854
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 157, 46, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 157, 46, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 31.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 12.24 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 157, Clients: 6
+    p50 Throughput: 29.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4000
+    p95 RTT: 284.75 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 46, Clients: 4
+    p50 Throughput: 30.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 5.70 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 31.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.6125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1813
+Global p95 RTT: 263.1725 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6235
+************************************************************
+
+  ✓ Training pair saved (total: 10)
+
+
+
+################################################################################
+TRIAL #11 - PLANNER ID #12c6b25035e5
+################################################################################
+
+  SELECTED AP 3 for optimization
+  AP 3 NEW: CH=40, TX=23.6dBm, OBSS-PD=-60.6dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=157, TX=20.1dBm, OBSS-PD=-79.1dBm
+  AP 3 (00:00:00:00:00:03): CH=40, TX=23.6dBm, OBSS-PD=-60.6dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1855
+    AP2 (00:00:00:00:00:02): CH=157 (20MHz), TX=20.1dBm, OBSS-PD=-79.1dBm
+      ✓ Sent to partition 0, offset 1856
+    AP3 (00:00:00:00:00:03): CH=40 (20MHz), TX=23.6dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1857
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1858
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 157, 40, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 157, 40, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 30.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 9.19 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 157, Clients: 6
+    p50 Throughput: 29.80 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2500
+    p95 RTT: 679.58 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 40, Clients: 4
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 4.66 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 29.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1750
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.0500 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1063
+Global p95 RTT: 360.8563 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6218
+************************************************************
+
+  ✓ Training pair saved (total: 11)
+
+
+
+################################################################################
+TRIAL #12 - PLANNER ID #4e34c2eedcdb
+################################################################################
+
+  SELECTED AP 3 for optimization
+  AP 3 NEW: CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=157, TX=20.1dBm, OBSS-PD=-79.1dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1859
+    AP2 (00:00:00:00:00:02): CH=157 (20MHz), TX=20.1dBm, OBSS-PD=-79.1dBm
+      ✓ Sent to partition 0, offset 1860
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1861
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1862
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 157, 122, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 157, 122, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 7.26 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 157, Clients: 6
+    p50 Throughput: 27.55 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2750
+    p95 RTT: 729.23 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 3.82 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 31.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 29.8500 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1500
+Global p95 RTT: 372.5775 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6026
+************************************************************
+
+  ✓ Training pair saved (total: 12)
+
+
+
+################################################################################
+TRIAL #13 - PLANNER ID #3887b3acf8a5
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=140, TX=16.5dBm, OBSS-PD=-67.8dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=140 (20MHz), TX=16.5dBm, OBSS-PD=-67.8dBm
+      ✓ Sent to partition 0, offset 1863
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1864
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1865
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1866
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [140, 138, 122, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [140, 138, 122, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 140, Clients: 5
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 6.60 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 31.40 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 639.38 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 2.47 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 30.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.8125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1313
+Global p95 RTT: 349.6125 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6187
+************************************************************
+
+  ✓ Training pair saved (total: 13)
+
+
+
+################################################################################
+TRIAL #14 - PLANNER ID #fc0915e84bc8
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=155, TX=24.8dBm, OBSS-PD=-61.1dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=155, TX=24.8dBm, OBSS-PD=-61.1dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=149, TX=22.4dBm, OBSS-PD=-76.0dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=155 (80MHz), TX=24.8dBm, OBSS-PD=-61.1dBm
+      ✓ Sent to partition 0, offset 1867
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1868
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1869
+    AP4 (00:00:00:00:00:04): CH=149 (20MHz), TX=22.4dBm, OBSS-PD=-76.0dBm
+      ✓ Sent to partition 0, offset 1870
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [155, 138, 122, 149])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [155, 138, 122, 149]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 155, Clients: 5
+    p50 Throughput: 31.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 4.18 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 31.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0750
+    p95 RTT: 323.57 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 31.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.78 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 149, Clients: 6
+    p50 Throughput: 31.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4000
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.3375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1188
+Global p95 RTT: 269.8850 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6461
+************************************************************
+
+  ✓ Training pair saved (total: 14)
+
+
+
+################################################################################
+TRIAL #15 - PLANNER ID #8d1779ccec96
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=155, TX=24.8dBm, OBSS-PD=-61.1dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=155 (80MHz), TX=24.8dBm, OBSS-PD=-61.1dBm
+      ✓ Sent to partition 0, offset 1871
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1872
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1873
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1874
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [155, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [155, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 155, Clients: 5
+    p50 Throughput: 30.65 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 2.85 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 30.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0750
+    p95 RTT: 165.78 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.80 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.70 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 35.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.5250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.8375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1500
+Global p95 RTT: 230.0825 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6476
+************************************************************
+
+  ✓ Training pair saved (total: 15)
+
+
+
+################################################################################
+TRIAL #16 - PLANNER ID #222b40f6e0e5
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=40, TX=20.2dBm, OBSS-PD=-79.7dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=40, TX=20.2dBm, OBSS-PD=-79.7dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=40 (20MHz), TX=20.2dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1875
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1876
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1877
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1878
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [40, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [40, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 40, Clients: 5
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 4.18 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 30.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 87.28 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.58 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 37.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2250
+    p95 RTT: 697.77 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 32.0000 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0562
+Global p95 RTT: 197.7037 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6896
+************************************************************
+
+  ✓ Training pair saved (total: 16)
+NEW BEST OBJECTIVE!
+Previous Best: 0.6588
+New Best: 0.6896
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.5012
+Candidate:    0.6896
+Uplift:       +0.1884
+Propensity:   0.491
+DR Estimate:  0.8416
+80% CI Lower: +0.0258
+✓ PASSED - Lower bound +0.0258 ≥ threshold +0.0200
+================================================================================
+
+
+================================================================================
+IMPROVEMENT REPORT PREPARED (Planner Version: 3)
+================================================================================
+Previous Best: 0.6588
+New Best: 0.6896
+Expected Change: +0.0308
+================================================================================
+
+
+✓ Config deployed - baseline updated to 0.6896
+
+
+
+
+################################################################################
+TRIAL #17 - PLANNER ID #9dc6b2fd6bc5
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=36, TX=20.5dBm, OBSS-PD=-78.4dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=36, TX=20.5dBm, OBSS-PD=-78.4dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=36 (20MHz), TX=20.5dBm, OBSS-PD=-78.4dBm
+      ✓ Sent to partition 0, offset 1879
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1880
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1881
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1882
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [36, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [36, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 36, Clients: 5
+    p50 Throughput: 30.05 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 5.95 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 30.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 47.85 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.45 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.30 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 34.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1500
+    p95 RTT: 596.95 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.3750 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0375
+Global p95 RTT: 163.0125 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.7032
+************************************************************
+
+  ✓ Training pair saved (total: 17)
+NEW BEST OBJECTIVE!
+Previous Best: 0.6896
+New Best: 0.7032
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.6896
+Candidate:    0.7032
+Uplift:       +0.0136
+Propensity:   0.531
+DR Estimate:  0.8213
+80% CI Lower: -0.1599
+✗ BLOCKED - Lower bound -0.1599 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #18 - PLANNER ID #fcc1e326fd85
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=36, TX=20.3dBm, OBSS-PD=-79.5dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=36, TX=20.3dBm, OBSS-PD=-79.5dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=36 (20MHz), TX=20.3dBm, OBSS-PD=-79.5dBm
+      ✓ Sent to partition 0, offset 1883
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1884
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1885
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1886
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [36, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [36, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 36, Clients: 5
+    p50 Throughput: 31.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 5.30 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 6
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 28.27 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.18 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 31.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0750
+    p95 RTT: 307.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.0500 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0188
+Global p95 RTT: 85.4400 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.7293
+************************************************************
+
+NEW BEST OBJECTIVE!
+Previous Best: 0.7032
+New Best: 0.7293
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.6896
+Candidate:    0.7293
+Uplift:       +0.0397
+Propensity:   0.556
+DR Estimate:  0.9143
+80% CI Lower: -0.0425
+✗ BLOCKED - Lower bound -0.0425 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #19 - PLANNER ID #91accf32b12d
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=104, TX=19.5dBm, OBSS-PD=-75.8dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=104, TX=19.5dBm, OBSS-PD=-75.8dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=104 (20MHz), TX=19.5dBm, OBSS-PD=-75.8dBm
+      ✓ Sent to partition 0, offset 1887
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1888
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1889
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1890
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [104, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [104, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 104, Clients: 6
+    p50 Throughput: 30.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 7.70 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 5
+    p50 Throughput: 31.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 18.62 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 31.85 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.10 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 30.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 158.47 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.2000 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0200
+Global p95 RTT: 46.4737 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.7398
+************************************************************
+
+  ✓ Training pair saved (total: 18)
+NEW BEST OBJECTIVE!
+Previous Best: 0.7293
+New Best: 0.7398
+
+================================================================================
+DOUBLY-ROBUST SAFETY GATE
+================================================================================
+Baseline:     0.6896
+Candidate:    0.7398
+Uplift:       +0.0502
+Propensity:   0.573
+DR Estimate:  0.8710
+80% CI Lower: -0.1126
+✗ BLOCKED - Lower bound -0.1126 < threshold +0.0200
+================================================================================
+
+
+⚠ Configuration NOT deployed due to DR safety gate rejection
+
+
+
+
+################################################################################
+TRIAL #20 - PLANNER ID #2205bb227b8c
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=120, TX=18.4dBm, OBSS-PD=-74.2dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=120, TX=18.4dBm, OBSS-PD=-74.2dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=21.3dBm, OBSS-PD=-79.3dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=120 (20MHz), TX=18.4dBm, OBSS-PD=-74.2dBm
+      ✓ Sent to partition 0, offset 1891
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=21.3dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1892
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1893
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1894
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [120, 138, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [120, 138, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 120, Clients: 6
+    p50 Throughput: 29.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4800
+    p95 RTT: 4.98 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 5
+    p50 Throughput: 30.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 12.96 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 31.40 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 31.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 86.03 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.8875 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1200
+Global p95 RTT: 26.2413 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.7091
+************************************************************
+
+  ✓ Training pair saved (total: 19)
+
+
+
+################################################################################
+TRIAL #21 - PLANNER ID #15756624ce54
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=120, TX=18.4dBm, OBSS-PD=-74.2dBm
+  AP 2 (00:00:00:00:00:02): CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=118, TX=24.9dBm, OBSS-PD=-79.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=120 (20MHz), TX=18.4dBm, OBSS-PD=-74.2dBm
+      ✓ Sent to partition 0, offset 1895
+    AP2 (00:00:00:00:00:02): CH=36 (20MHz), TX=13.1dBm, OBSS-PD=-71.5dBm
+      ✓ Sent to partition 0, offset 1896
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1897
+    AP4 (00:00:00:00:00:04): CH=118 (40MHz), TX=24.9dBm, OBSS-PD=-79.3dBm
+      ✓ Sent to partition 0, offset 1898
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [120, 36, 122, 118])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [120, 36, 122, 118]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 120, Clients: 6
+    p50 Throughput: 29.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.6400
+    p95 RTT: 5.06 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 36, Clients: 5
+    p50 Throughput: 30.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 26.24 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 118, Clients: 6
+    p50 Throughput: 31.05 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 47.22 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.3250 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1600
+Global p95 RTT: 19.8812 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6948
+************************************************************
+
+  ✓ Training pair saved (total: 20)
+
+
+
+################################################################################
+TRIAL #22 - PLANNER ID #5029a803de1c
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=155, TX=14.0dBm, OBSS-PD=-60.1dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=120, TX=18.4dBm, OBSS-PD=-74.2dBm
+  AP 2 (00:00:00:00:00:02): CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=155, TX=14.0dBm, OBSS-PD=-60.1dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=120 (20MHz), TX=18.4dBm, OBSS-PD=-74.2dBm
+      ✓ Sent to partition 0, offset 1899
+    AP2 (00:00:00:00:00:02): CH=36 (20MHz), TX=13.1dBm, OBSS-PD=-71.5dBm
+      ✓ Sent to partition 0, offset 1900
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1901
+    AP4 (00:00:00:00:00:04): CH=155 (80MHz), TX=14.0dBm, OBSS-PD=-60.1dBm
+      ✓ Sent to partition 0, offset 1902
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [120, 36, 122, 155])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [120, 36, 122, 155]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 120, Clients: 6
+    p50 Throughput: 31.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.7200
+    p95 RTT: 5.28 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 36, Clients: 5
+    p50 Throughput: 30.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 23.92 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 29.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 0.90 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 155, Clients: 6
+    p50 Throughput: 31.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 26.70 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.6125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1800
+Global p95 RTT: 14.2000 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6904
+************************************************************
+
+  ✓ Training pair saved (total: 21)
+
+
+
+################################################################################
+TRIAL #23 - PLANNER ID #1967bdb77e12
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=40, TX=20.3dBm, OBSS-PD=-60.3dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=120, TX=18.4dBm, OBSS-PD=-74.2dBm
+  AP 2 (00:00:00:00:00:02): CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=40, TX=20.3dBm, OBSS-PD=-60.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=120 (20MHz), TX=18.4dBm, OBSS-PD=-74.2dBm
+      ✓ Sent to partition 0, offset 1903
+    AP2 (00:00:00:00:00:02): CH=36 (20MHz), TX=13.1dBm, OBSS-PD=-71.5dBm
+      ✓ Sent to partition 0, offset 1904
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1905
+    AP4 (00:00:00:00:00:04): CH=40 (20MHz), TX=20.3dBm, OBSS-PD=-60.3dBm
+      ✓ Sent to partition 0, offset 1906
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [120, 36, 122, 40])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [120, 36, 122, 40]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 120, Clients: 6
+    p50 Throughput: 30.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.7200
+    p95 RTT: 4.50 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 36, Clients: 5
+    p50 Throughput: 30.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 21.16 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 0.90 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 40, Clients: 6
+    p50 Throughput: 29.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 32.95 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.0750 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.2050
+Global p95 RTT: 14.8775 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6795
+************************************************************
+
+  ✓ Training pair saved (total: 22)
+
+
+
+################################################################################
+TRIAL #24 - PLANNER ID #0f776ec7da96
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+  AP 2 (00:00:00:00:00:02): CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=40, TX=20.3dBm, OBSS-PD=-60.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=132 (20MHz), TX=18.1dBm, OBSS-PD=-74.1dBm
+      ✓ Sent to partition 0, offset 1907
+    AP2 (00:00:00:00:00:02): CH=36 (20MHz), TX=13.1dBm, OBSS-PD=-71.5dBm
+      ✓ Sent to partition 0, offset 1908
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1909
+    AP4 (00:00:00:00:00:04): CH=40 (20MHz), TX=20.3dBm, OBSS-PD=-60.3dBm
+      ✓ Sent to partition 0, offset 1910
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [132, 36, 122, 40])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [132, 36, 122, 40]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 132, Clients: 6
+    p50 Throughput: 30.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.5800
+    p95 RTT: 601.20 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 36, Clients: 5
+    p50 Throughput: 29.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 38.34 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 0.89 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 40, Clients: 6
+    p50 Throughput: 28.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2000
+    p95 RTT: 210.58 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 29.6875 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.2150
+Global p95 RTT: 212.7500 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6219
+************************************************************
+
+  ✓ Training pair saved (total: 23)
+
+
+
+################################################################################
+TRIAL #25 - PLANNER ID #1c0ac1d95abe
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=157, TX=17.6dBm, OBSS-PD=-69.2dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+  AP 2 (00:00:00:00:00:02): CH=36, TX=13.1dBm, OBSS-PD=-71.5dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=157, TX=17.6dBm, OBSS-PD=-69.2dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=132 (20MHz), TX=18.1dBm, OBSS-PD=-74.1dBm
+      ✓ Sent to partition 0, offset 1911
+    AP2 (00:00:00:00:00:02): CH=36 (20MHz), TX=13.1dBm, OBSS-PD=-71.5dBm
+      ✓ Sent to partition 0, offset 1912
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1913
+    AP4 (00:00:00:00:00:04): CH=157 (20MHz), TX=17.6dBm, OBSS-PD=-69.2dBm
+      ✓ Sent to partition 0, offset 1914
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [132, 36, 122, 157])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [132, 36, 122, 157]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 132, Clients: 6
+    p50 Throughput: 30.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3200
+    p95 RTT: 611.32 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 36, Clients: 5
+    p50 Throughput: 31.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 33.42 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.65 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 157, Clients: 6
+    p50 Throughput: 29.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2750
+    p95 RTT: 414.88 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.5375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1487
+Global p95 RTT: 265.1537 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6341
+************************************************************
+
+  ✓ Training pair saved (total: 24)
+
+
+
+################################################################################
+TRIAL #26 - PLANNER ID #09064f0c7e0b
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=138, TX=24.9dBm, OBSS-PD=-60.6dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=24.9dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=157, TX=17.6dBm, OBSS-PD=-69.2dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=132 (20MHz), TX=18.1dBm, OBSS-PD=-74.1dBm
+      ✓ Sent to partition 0, offset 1915
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=24.9dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1916
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1917
+    AP4 (00:00:00:00:00:04): CH=157 (20MHz), TX=17.6dBm, OBSS-PD=-69.2dBm
+      ✓ Sent to partition 0, offset 1918
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [132, 138, 122, 157])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [132, 138, 122, 157]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 132, Clients: 6
+    p50 Throughput: 29.80 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1600
+    p95 RTT: 607.06 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 5
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 21.20 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 29.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 157, Clients: 6
+    p50 Throughput: 28.65 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.3250
+    p95 RTT: 674.67 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 29.5625 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1212
+Global p95 RTT: 325.9837 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6241
+************************************************************
+
+  ✓ Training pair saved (total: 25)
+
+
+
+################################################################################
+TRIAL #27 - PLANNER ID #302536432e9d
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+  AP 2 (00:00:00:00:00:02): CH=138, TX=24.9dBm, OBSS-PD=-60.6dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=132 (20MHz), TX=18.1dBm, OBSS-PD=-74.1dBm
+      ✓ Sent to partition 0, offset 1919
+    AP2 (00:00:00:00:00:02): CH=138 (80MHz), TX=24.9dBm, OBSS-PD=-60.6dBm
+      ✓ Sent to partition 0, offset 1920
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1921
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1922
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [132, 138, 122, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [132, 138, 122, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 132, Clients: 6
+    p50 Throughput: 30.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 357.62 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 138, Clients: 5
+    p50 Throughput: 30.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 14.02 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 0.90 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 30.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4750
+    p95 RTT: 708.45 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.6250 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1387
+Global p95 RTT: 270.2475 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6366
+************************************************************
+
+  ✓ Training pair saved (total: 26)
+
+
+
+################################################################################
+TRIAL #28 - PLANNER ID #56d2eaba2c71
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=112, TX=16.7dBm, OBSS-PD=-67.2dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=132, TX=18.1dBm, OBSS-PD=-74.1dBm
+  AP 2 (00:00:00:00:00:02): CH=112, TX=16.7dBm, OBSS-PD=-67.2dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=132 (20MHz), TX=18.1dBm, OBSS-PD=-74.1dBm
+      ✓ Sent to partition 0, offset 1923
+    AP2 (00:00:00:00:00:02): CH=112 (20MHz), TX=16.7dBm, OBSS-PD=-67.2dBm
+      ✓ Sent to partition 0, offset 1924
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1925
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1926
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [132, 112, 122, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [132, 112, 122, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 132, Clients: 6
+    p50 Throughput: 29.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 196.32 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 112, Clients: 5
+    p50 Throughput: 29.90 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 13.38 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 31.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 29.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2750
+    p95 RTT: 696.33 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.1375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1138
+Global p95 RTT: 226.7562 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6552
+************************************************************
+
+  ✓ Training pair saved (total: 27)
+
+
+
+################################################################################
+TRIAL #29 - PLANNER ID #4bc5a4dc4250
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=116, TX=19.4dBm, OBSS-PD=-73.8dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=116, TX=19.4dBm, OBSS-PD=-73.8dBm
+  AP 2 (00:00:00:00:00:02): CH=112, TX=16.7dBm, OBSS-PD=-67.2dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=116 (20MHz), TX=19.4dBm, OBSS-PD=-73.8dBm
+      ✓ Sent to partition 0, offset 1927
+    AP2 (00:00:00:00:00:02): CH=112 (20MHz), TX=16.7dBm, OBSS-PD=-67.2dBm
+      ✓ Sent to partition 0, offset 1928
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1929
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1930
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [116, 112, 122, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [116, 112, 122, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 116, Clients: 6
+    p50 Throughput: 29.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 153.18 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 112, Clients: 5
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 19.12 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.95 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 0.98 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 29.20 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.0125 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1263
+Global p95 RTT: 230.8212 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6493
+************************************************************
+
+  ✓ Training pair saved (total: 28)
+
+
+
+################################################################################
+TRIAL #30 - PLANNER ID #56bffaf43f34
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=62, TX=22.2dBm, OBSS-PD=-75.4dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=116, TX=19.4dBm, OBSS-PD=-73.8dBm
+  AP 2 (00:00:00:00:00:02): CH=62, TX=22.2dBm, OBSS-PD=-75.4dBm
+  AP 3 (00:00:00:00:00:03): CH=122, TX=13.3dBm, OBSS-PD=-65.3dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=116 (20MHz), TX=19.4dBm, OBSS-PD=-73.8dBm
+      ✓ Sent to partition 0, offset 1931
+    AP2 (00:00:00:00:00:02): CH=62 (40MHz), TX=22.2dBm, OBSS-PD=-75.4dBm
+      ✓ Sent to partition 0, offset 1932
+    AP3 (00:00:00:00:00:03): CH=122 (80MHz), TX=13.3dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1933
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1934
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [116, 62, 122, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [116, 62, 122, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 116, Clients: 6
+    p50 Throughput: 30.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 92.44 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 62, Clients: 5
+    p50 Throughput: 31.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 14.22 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 122, Clients: 4
+    p50 Throughput: 30.05 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 1.00 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 27.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 29.8250 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1062
+Global p95 RTT: 214.4150 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6600
+************************************************************
+
+  ✓ Training pair saved (total: 29)
+
+
+
+################################################################################
+TRIAL #31 - PLANNER ID #f89c6a3d5b98
+################################################################################
+
+  SELECTED AP 3 for optimization
+  AP 3 NEW: CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=116, TX=19.4dBm, OBSS-PD=-73.8dBm
+  AP 2 (00:00:00:00:00:02): CH=62, TX=22.2dBm, OBSS-PD=-75.4dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=116 (20MHz), TX=19.4dBm, OBSS-PD=-73.8dBm
+      ✓ Sent to partition 0, offset 1935
+    AP2 (00:00:00:00:00:02): CH=62 (40MHz), TX=22.2dBm, OBSS-PD=-75.4dBm
+      ✓ Sent to partition 0, offset 1936
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1937
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1938
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [116, 62, 36, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [116, 62, 36, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 116, Clients: 6
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 58.92 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 62, Clients: 5
+    p50 Throughput: 30.80 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 12.98 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 36, Clients: 4
+    p50 Throughput: 30.05 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 2.71 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 29.85 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4250
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.2500 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1062
+Global p95 RTT: 206.1525 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6637
+************************************************************
+
+  ✓ Training pair saved (total: 30)
+
+
+
+################################################################################
+TRIAL #32 - PLANNER ID #ee761e94c28c
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=64, TX=20.6dBm, OBSS-PD=-79.7dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=64, TX=20.6dBm, OBSS-PD=-79.7dBm
+  AP 2 (00:00:00:00:00:02): CH=62, TX=22.2dBm, OBSS-PD=-75.4dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=144, TX=13.3dBm, OBSS-PD=-64.9dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=64 (20MHz), TX=20.6dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1939
+    AP2 (00:00:00:00:00:02): CH=62 (40MHz), TX=22.2dBm, OBSS-PD=-75.4dBm
+      ✓ Sent to partition 0, offset 1940
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1941
+    AP4 (00:00:00:00:00:04): CH=144 (20MHz), TX=13.3dBm, OBSS-PD=-64.9dBm
+      ✓ Sent to partition 0, offset 1942
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [64, 62, 36, 144])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [64, 62, 36, 144]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 64, Clients: 6
+    p50 Throughput: 30.60 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 44.36 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 62, Clients: 5
+    p50 Throughput: 29.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0800
+    p95 RTT: 10.12 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 36, Clients: 4
+    p50 Throughput: 30.75 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 4.87 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 144, Clients: 6
+    p50 Throughput: 30.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.4750
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.2750 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1387
+Global p95 RTT: 202.3375 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6534
+************************************************************
+
+  ✓ Training pair saved (total: 31)
+
+
+
+################################################################################
+TRIAL #33 - PLANNER ID #b80ad9c17a54
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=126, TX=20.5dBm, OBSS-PD=-73.5dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=64, TX=20.6dBm, OBSS-PD=-79.7dBm
+  AP 2 (00:00:00:00:00:02): CH=62, TX=22.2dBm, OBSS-PD=-75.4dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=126, TX=20.5dBm, OBSS-PD=-73.5dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=64 (20MHz), TX=20.6dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1943
+    AP2 (00:00:00:00:00:02): CH=62 (40MHz), TX=22.2dBm, OBSS-PD=-75.4dBm
+      ✓ Sent to partition 0, offset 1944
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1945
+    AP4 (00:00:00:00:00:04): CH=126 (40MHz), TX=20.5dBm, OBSS-PD=-73.5dBm
+      ✓ Sent to partition 0, offset 1946
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [64, 62, 36, 126])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [64, 62, 36, 126]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 64, Clients: 6
+    p50 Throughput: 31.00 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 30.36 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 62, Clients: 5
+    p50 Throughput: 30.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 10.90 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 36, Clients: 4
+    p50 Throughput: 31.35 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 5.37 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 126, Clients: 6
+    p50 Throughput: 31.30 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2750
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.9875 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0688
+Global p95 RTT: 199.1575 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6813
+************************************************************
+
+  ✓ Training pair saved (total: 32)
+
+
+
+################################################################################
+TRIAL #34 - PLANNER ID #5a95744d5722
+################################################################################
+
+  SELECTED AP 2 for optimization
+  AP 2 NEW: CH=134, TX=17.0dBm, OBSS-PD=-66.0dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=64, TX=20.6dBm, OBSS-PD=-79.7dBm
+  AP 2 (00:00:00:00:00:02): CH=134, TX=17.0dBm, OBSS-PD=-66.0dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=126, TX=20.5dBm, OBSS-PD=-73.5dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=64 (20MHz), TX=20.6dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1947
+    AP2 (00:00:00:00:00:02): CH=134 (40MHz), TX=17.0dBm, OBSS-PD=-66.0dBm
+      ✓ Sent to partition 0, offset 1948
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1949
+    AP4 (00:00:00:00:00:04): CH=126 (40MHz), TX=20.5dBm, OBSS-PD=-73.5dBm
+      ✓ Sent to partition 0, offset 1950
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [64, 134, 36, 126])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [64, 134, 36, 126]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 64, Clients: 6
+    p50 Throughput: 31.40 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 32.02 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 134, Clients: 5
+    p50 Throughput: 31.40 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 10.02 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 36, Clients: 4
+    p50 Throughput: 30.15 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 6.70 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 126, Clients: 6
+    p50 Throughput: 33.55 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 750.00 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 31.6250 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.0250
+Global p95 RTT: 199.6850 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6987
+************************************************************
+
+  ✓ Training pair saved (total: 33)
+
+
+
+################################################################################
+TRIAL #35 - PLANNER ID #f07e538ca40a
+################################################################################
+
+  SELECTED AP 4 for optimization
+  AP 4 NEW: CH=108, TX=24.6dBm, OBSS-PD=-65.3dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=64, TX=20.6dBm, OBSS-PD=-79.7dBm
+  AP 2 (00:00:00:00:00:02): CH=134, TX=17.0dBm, OBSS-PD=-66.0dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=108, TX=24.6dBm, OBSS-PD=-65.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=64 (20MHz), TX=20.6dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1951
+    AP2 (00:00:00:00:00:02): CH=134 (40MHz), TX=17.0dBm, OBSS-PD=-66.0dBm
+      ✓ Sent to partition 0, offset 1952
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1953
+    AP4 (00:00:00:00:00:04): CH=108 (20MHz), TX=24.6dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1954
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+  [Kafka RX] Seeked to end - skipping stale messages
+  Seeked to end of metrics topic
+============================================================
+
+
+================================================================================
+COLLECTING ALIGNED METRICS FROM NS-3
+================================================================================
+
+  Waiting for aligned data (expected channels: [64, 134, 36, 108])...
+  ✓ Got aligned data after 1 attempts
+    NS-3 channels: [64, 134, 36, 108]
+    Total connections: 20
+
+============================================================
+CALCULATING OBJECTIVE FROM NS-3 METRICS
+============================================================
+
+Per-AP Metrics (from 4 APs in response):
+
+  AP1 (00:00:00:00:00:01):
+    Channel: 64, Clients: 5
+    p50 Throughput: 30.50 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.0000
+    p95 RTT: 21.17 ms
+
+  AP2 (00:00:00:00:00:02):
+    Channel: 134, Clients: 6
+    p50 Throughput: 30.25 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1500
+    p95 RTT: 27.50 ms
+
+  AP3 (00:00:00:00:00:03):
+    Channel: 36, Clients: 5
+    p50 Throughput: 30.10 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.2400
+    p95 RTT: 397.18 ms
+
+  AP4 (00:00:00:00:00:04):
+    Channel: 108, Clients: 5
+    p50 Throughput: 31.70 Mbps
+    p95 Retry Rate: 0.0000
+    p95 Loss Rate: 0.1000
+    p95 RTT: 497.84 ms
+
+============================================================
+GLOBAL METRICS
+============================================================
+Global p50 Throughput: 30.6375 Mbps
+Global p95 Retry Rate: 0.0000
+Global p95 Loss Rate: 0.1225
+Global p95 RTT: 235.9225 ms
+
+************************************************************
+OVERALL OBJECTIVE VALUE: 0.6514
+************************************************************
+
+  ✓ Training pair saved (total: 34)
+
+
+
+################################################################################
+TRIAL #36 - PLANNER ID #553255506413
+################################################################################
+
+  SELECTED AP 1 for optimization
+  AP 1 NEW: CH=40, TX=21.6dBm, OBSS-PD=-76.6dBm
+
+============================================================
+SENDING CONFIGURATION VIA KAFKA
+============================================================
+Simulation ID: basic-sim
+Target APs: 4
+  AP 1 (00:00:00:00:00:01): CH=40, TX=21.6dBm, OBSS-PD=-76.6dBm
+  AP 2 (00:00:00:00:00:02): CH=134, TX=17.0dBm, OBSS-PD=-66.0dBm
+  AP 3 (00:00:00:00:00:03): CH=36, TX=24.7dBm, OBSS-PD=-79.7dBm
+  AP 4 (00:00:00:00:00:04): CH=108, TX=24.6dBm, OBSS-PD=-65.3dBm
+  [Kafka TX] Sending configs for 4 APs...
+    AP1 (00:00:00:00:00:01): CH=40 (20MHz), TX=21.6dBm, OBSS-PD=-76.6dBm
+      ✓ Sent to partition 0, offset 1955
+    AP2 (00:00:00:00:00:02): CH=134 (40MHz), TX=17.0dBm, OBSS-PD=-66.0dBm
+      ✓ Sent to partition 0, offset 1956
+    AP3 (00:00:00:00:00:03): CH=36 (20MHz), TX=24.7dBm, OBSS-PD=-79.7dBm
+      ✓ Sent to partition 0, offset 1957
+    AP4 (00:00:00:00:00:04): CH=108 (20MHz), TX=24.6dBm, OBSS-PD=-65.3dBm
+      ✓ Sent to partition 0, offset 1958
+  [Kafka TX] ✓ All 4 configs sent and flushed successfully
+✓ Configuration sent successfully
+  Waiting 3s for NS-3 to apply configuration...
+
+
+✗ Optimization interrupted by user
+
+================================================================================
+SAVING TRAINING DATA (SISA FORMAT)
+================================================================================
+✓ Saved training data: training_data/training_trajectory_20251201_214251_0000.json (34 data points)
+✓ Saved raw trajectory: training_data/raw_trajectory_20251201_214251_0000.json
+
+
+
+================================================================================
+OPTIMIZATION COMPLETE
+================================================================================
+
+Completed Trials: 35
+
+================================================================================
+INITIAL CONFIGURATION
+================================================================================
+Channels: [36, 40, 44, 36]
+TX Power: [20.0, 20.0, 20.0, 20.0]
+OBSS-PD: [-50.0, -50.0, -50.0, -50.0]
+First Trial Objective: 0.2847
+
+================================================================================
+BEST TRIAL FOUND
+================================================================================
+Trial Number: 18
+PLANNER ID: #91accf32b12d
+Objective Value: 0.7398
+
+================================================================================
+FINAL CONFIGURATION
+================================================================================
+Channels: [64, 134, 36, 108]
+TX Power: ['20.64', '16.99', '24.72', '24.58']
+OBSS-PD: ['-79.74', '-65.99', '-79.74', '-65.32']
+
+================================================================================
+IMPROVEMENT SUMMARY
+================================================================================
+First Trial:  0.2847
+Best Trial:   0.7398
+Improvement: +0.4551 (+159.88%)
+✓ OPTIMIZATION SUCCEEDED!
+
+================================================================================
+CONFIG CHURN ANALYSIS
+================================================================================
+WITHOUT DR Gate: 11 deployments
+WITH DR Gate: 3 deployments
+Reduction: 8 (72.7%)
+================================================================================
+
+================================================================================
+TRAINING DATA SUMMARY (SISA FORMAT)
+================================================================================
+Training data directory: training_data
+Total training pairs saved: 34
+AP coordinates: {'AP1': [6.0, 0.0], 'AP2': [-4.2, -6.0], 'AP3': [4.4, 4.2], 'AP4': [-9.6, -4.9]}
+================================================================================
+
+Log saved to: logs_folder/optuna_ns3_integrated_20251201_214007.txt
+================================================================================
+

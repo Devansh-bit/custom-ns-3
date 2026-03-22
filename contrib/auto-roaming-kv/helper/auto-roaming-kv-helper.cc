@@ -1,0 +1,488 @@
+#include "auto-roaming-kv-helper.h"
+#include "ns3/log.h"
+#include "ns3/simulator.h"
+#include "ns3/wifi-net-device.h"
+#include "ns3/wifi-mac.h"
+#include "ns3/sta-wifi-mac.h"
+#include "ns3/mobility-model.h"
+#include "ns3/node.h"
+#include "ns3/vector.h"
+
+namespace ns3
+{
+
+NS_LOG_COMPONENT_DEFINE("AutoRoamingKvHelper");
+
+AutoRoamingKvHelper::AutoRoamingKvHelper()
+    : m_measurementInterval(Seconds(1.0)),
+      m_rssiThreshold(-75.0),
+      m_beaconRequestDelay(MilliSeconds(50)),
+      m_bssTmRequestDelay(MilliSeconds(50)),
+      m_neighborRequestTriggered(false),
+      m_lastAssociatedAp(Mac48Address())
+{
+    NS_LOG_FUNCTION(this);
+}
+
+AutoRoamingKvHelper::~AutoRoamingKvHelper()
+{
+    NS_LOG_FUNCTION(this);
+}
+
+void
+AutoRoamingKvHelper::SetMeasurementInterval(Time interval)
+{
+    NS_LOG_FUNCTION(this << interval);
+    m_measurementInterval = interval;
+}
+
+void
+AutoRoamingKvHelper::SetRssiThreshold(double threshold)
+{
+    NS_LOG_FUNCTION(this << threshold);
+    m_rssiThreshold = threshold;
+}
+
+void
+AutoRoamingKvHelper::SetBeaconRequestDelay(Time delay)
+{
+    NS_LOG_FUNCTION(this << delay);
+    m_beaconRequestDelay = delay;
+}
+
+void
+AutoRoamingKvHelper::SetBssTmRequestDelay(Time delay)
+{
+    NS_LOG_FUNCTION(this << delay);
+    m_bssTmRequestDelay = delay;
+}
+
+std::vector<Ptr<LinkMeasurementProtocol>>
+AutoRoamingKvHelper::InstallAp(NetDeviceContainer apDevices)
+{
+    NS_LOG_FUNCTION(this);
+    std::vector<Ptr<LinkMeasurementProtocol>> protocols;
+
+    for (uint32_t i = 0; i < apDevices.GetN(); i++)
+    {
+        Ptr<WifiNetDevice> wifiDevice = DynamicCast<WifiNetDevice>(apDevices.Get(i));
+        NS_ASSERT_MSG(wifiDevice, "Device must be a WifiNetDevice");
+
+        // Store AP device in map by MAC address
+        Mac48Address apMac = wifiDevice->GetMac()->GetAddress();
+        m_apDevices[apMac] = wifiDevice;
+
+        Ptr<LinkMeasurementProtocol> protocol = CreateObject<LinkMeasurementProtocol>();
+        protocol->Install(wifiDevice);
+
+        protocols.push_back(protocol);
+
+        NS_LOG_INFO("Installed Link Measurement Protocol on AP device " << apMac);
+    }
+
+    return protocols;
+}
+
+Mac48Address
+AutoRoamingKvHelper::GetCurrentApBssid() const
+{
+    NS_LOG_FUNCTION(this);
+
+    if (!m_staDevice)
+    {
+        NS_LOG_ERROR("STA device not set");
+        return Mac48Address();
+    }
+
+    Ptr<WifiMac> staMac = m_staDevice->GetMac();
+    Ptr<StaWifiMac> staWifiMac = DynamicCast<StaWifiMac>(staMac);
+
+    if (!staWifiMac)
+    {
+        NS_LOG_ERROR("Device is not a StaWifiMac");
+        return Mac48Address();
+    }
+
+    if (!staWifiMac->IsAssociated())
+    {
+        NS_LOG_WARN("STA is not currently associated with any AP");
+        return Mac48Address();
+    }
+
+    // Get BSSID for link 0 (single-link operation)
+    Mac48Address currentBssid = staMac->GetBssid(0);
+    NS_LOG_DEBUG("Current associated AP BSSID: " << currentBssid);
+
+    return currentBssid;
+}
+
+std::vector<Ptr<LinkMeasurementProtocol>>
+AutoRoamingKvHelper::InstallSta(NetDeviceContainer staDevices,
+                                 Ptr<NeighborProtocolHelper> neighborProtocol,
+                                 Ptr<BeaconProtocolHelper> beaconProtocol,
+                                 Ptr<BssTm11vHelper> bssTmHelper)
+{
+    NS_LOG_FUNCTION(this);
+    std::vector<Ptr<LinkMeasurementProtocol>> protocols;
+
+    // Store the protocols for later use
+    m_neighborProtocol = neighborProtocol;
+    m_beaconProtocol = beaconProtocol;
+    m_bssTmHelper = bssTmHelper;
+
+    for (uint32_t i = 0; i < staDevices.GetN(); i++)
+    {
+        Ptr<WifiNetDevice> wifiDevice = DynamicCast<WifiNetDevice>(staDevices.Get(i));
+        NS_ASSERT_MSG(wifiDevice, "Device must be a WifiNetDevice");
+
+        // Store STA device and address for requests
+        m_staDevice = wifiDevice;
+        m_staAddress = wifiDevice->GetMac()->GetAddress();
+
+        // Install Link Measurement Protocol
+        Ptr<LinkMeasurementProtocol> protocol = CreateObject<LinkMeasurementProtocol>();
+        protocol->Install(wifiDevice);
+
+        // Connect to link measurement report callback for RSSI monitoring
+        protocol->TraceConnectWithoutContext(
+            "LinkMeasurementReportReceived",
+            MakeCallback(&AutoRoamingKvHelper::OnLinkMeasurementReport, this));
+
+        // Connect to neighbor report callback
+        m_neighborProtocol->m_neighborReportReceivedTrace.ConnectWithoutContext(
+            MakeCallback(&AutoRoamingKvHelper::OnNeighborReportReceived, this));
+
+        // Connect to beacon report callback
+        m_beaconProtocol->m_beaconReportReceivedTrace.ConnectWithoutContext(
+            MakeCallback(&AutoRoamingKvHelper::OnBeaconReportReceived, this));
+
+        // Schedule the first periodic request after association time (1 second delay)
+        Simulator::Schedule(Seconds(1.0),
+                            &AutoRoamingKvHelper::SendPeriodicRequest,
+                            this,
+                            protocol);
+
+        protocols.push_back(protocol);
+
+        NS_LOG_INFO("Installed Link Measurement Protocol on STA device "
+                    << wifiDevice->GetMac()->GetAddress()
+                    << " with measurement interval " << m_measurementInterval.As(Time::S)
+                    << " and RSSI threshold " << m_rssiThreshold << " dBm"
+                    << " and beacon request delay " << m_beaconRequestDelay.As(Time::MS) << " ms"
+                    << " (will auto-detect associated AP)");
+    }
+
+    return protocols;
+}
+
+void
+AutoRoamingKvHelper::SendPeriodicRequest(Ptr<LinkMeasurementProtocol> protocol)
+{
+    NS_LOG_FUNCTION(this);
+
+    // Get the currently associated AP
+    Mac48Address currentApBssid = GetCurrentApBssid();
+
+    if (currentApBssid.IsBroadcast() || currentApBssid == Mac48Address())
+    {
+        NS_LOG_WARN("STA " << m_staAddress << " is not associated, skipping link measurement request");
+    }
+    else
+    {
+        // Check if we've roamed to a new AP
+        if (!m_lastAssociatedAp.IsBroadcast() &&
+            m_lastAssociatedAp != Mac48Address() &&
+            currentApBssid != m_lastAssociatedAp)
+        {
+            NS_LOG_DEBUG("["
+                          << Simulator::Now().GetSeconds()
+                          << "s] ✓ STA " << m_staAddress << " detected new AP association: "
+                          << m_lastAssociatedAp << " → " << currentApBssid);
+            NS_LOG_DEBUG("   Resetting neighbor request trigger flag for continuous monitoring");
+
+            // Reset the trigger flag so we can trigger neighbor requests on the new AP
+            m_neighborRequestTriggered = false;
+        }
+
+        // Update last associated AP
+        m_lastAssociatedAp = currentApBssid;
+
+        NS_LOG_DEBUG("STA " << m_staAddress << " sending link measurement request to current AP: " << currentApBssid);
+        protocol->SendLinkMeasurementRequest(currentApBssid, 20, 30);
+    }
+
+    // Schedule next periodic request
+    Simulator::Schedule(m_measurementInterval,
+                        &AutoRoamingKvHelper::SendPeriodicRequest,
+                        this,
+                        protocol);
+}
+
+void
+AutoRoamingKvHelper::OnLinkMeasurementReport(Mac48Address from, LinkMeasurementReport report)
+{
+    NS_LOG_FUNCTION(this << from);
+
+    // Get RCPI and convert to RSSI in dBm
+    double rcpiDbm = report.GetRcpiDbm();
+
+    // Get STA position
+    Ptr<Node> staNode = m_staDevice->GetNode();
+    Ptr<MobilityModel> mobility = staNode->GetObject<MobilityModel>();
+    Vector position = mobility->GetPosition();
+
+    NS_LOG_INFO("STA " << m_staAddress << " Link Measurement Report: RSSI = " << rcpiDbm
+                << " dBm, Threshold = " << m_rssiThreshold << " dBm"
+                << ", Position = (" << position.x << ", " << position.y << ")");
+
+    // Check if RSSI has dropped below threshold and we haven't triggered a request yet
+    if (rcpiDbm < m_rssiThreshold && !m_neighborRequestTriggered)
+    {
+        NS_LOG_DEBUG("["
+                      << Simulator::Now().GetSeconds()
+                      << "s] STA " << m_staAddress << " RSSI dropped below threshold!");
+        NS_LOG_DEBUG("   RSSI: " << rcpiDbm << " dBm < Threshold: " << m_rssiThreshold << " dBm");
+        NS_LOG_DEBUG("   Position: (" << position.x << ", " << position.y << ")");
+        NS_LOG_DEBUG("   Triggering Neighbor Report Request...");
+
+        // Get the currently associated AP
+        Mac48Address currentApBssid = GetCurrentApBssid();
+
+        // Trigger neighbor report request to the current AP
+        if (m_neighborProtocol && m_staDevice && !currentApBssid.IsBroadcast() && currentApBssid != Mac48Address())
+        {
+            m_neighborProtocol->SendNeighborReportRequest(m_staDevice, currentApBssid);
+            m_neighborRequestTriggered = true;
+            NS_LOG_INFO("STA " << m_staAddress << " Neighbor Report Request sent to current AP: " << currentApBssid);
+        }
+        else
+        {
+            NS_LOG_ERROR("STA " << m_staAddress << " cannot send neighbor request: neighbor protocol, STA device not set, or not associated");
+        }
+    }
+}
+
+void
+AutoRoamingKvHelper::OnNeighborReportReceived(Mac48Address staAddress,
+                                                Mac48Address apAddress,
+                                                std::vector<NeighborReportData> neighbors)
+{
+    NS_LOG_FUNCTION(this << staAddress << apAddress << neighbors.size());
+
+    static uint64_t callCount = 0;
+    callCount++;
+
+    // Verify callback is for this STA instance
+    if (staAddress != m_staAddress)
+    {
+        NS_LOG_DEBUG("⚠️ Ignoring neighbor report for " << staAddress
+                     << " (this helper is for " << m_staAddress << ")");
+        return;  // Not for this STA, ignore
+    }
+
+    // Store the neighbor report
+    m_lastNeighborReport = neighbors;
+
+    NS_LOG_DEBUG("\n╔════════════════════════════════════════════════════════════╗");
+    NS_LOG_DEBUG("║  NEIGHBOR REPORT RECEIVED (Callback #" << callCount << ")                   ║");
+    NS_LOG_DEBUG("╠════════════════════════════════════════════════════════════╣");
+    NS_LOG_DEBUG("║  Time: " << Simulator::Now().GetSeconds() << "s");
+    NS_LOG_DEBUG("║  STA (trace param): " << staAddress);
+    NS_LOG_DEBUG("║  STA (this helper): " << m_staAddress);
+    NS_LOG_DEBUG("║  Instance (this): " << this);
+    NS_LOG_DEBUG("║  Number of neighbors: " << neighbors.size());
+    if (neighbors.empty())
+    {
+        NS_LOG_DEBUG("║  ⚠ WARNING: No neighbors reported!");
+    }
+    else
+    {
+        for (size_t i = 0; i < neighbors.size(); i++)
+        {
+            NS_LOG_DEBUG("║    [" << (i + 1) << "] BSSID: " << neighbors[i].bssid
+                                << " | Ch: " << (uint32_t)neighbors[i].channel);
+        }
+    }
+    NS_LOG_DEBUG("║  Next: Scheduling Beacon Request after " << m_beaconRequestDelay.As(Time::MS) << " ms");
+    NS_LOG_DEBUG("╚════════════════════════════════════════════════════════════╝\n");
+
+    // Schedule beacon request after configured delay
+    Simulator::Schedule(m_beaconRequestDelay,
+                        &AutoRoamingKvHelper::SendBeaconRequest,
+                        this);
+}
+
+void
+AutoRoamingKvHelper::SendBeaconRequest()
+{
+    NS_LOG_FUNCTION(this);
+
+    // Get the currently associated AP
+    Mac48Address currentApBssid = GetCurrentApBssid();
+
+    if (currentApBssid.IsBroadcast() || currentApBssid == Mac48Address())
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot send beacon request: STA is not currently associated");
+        return;
+    }
+
+    NS_LOG_DEBUG("["
+                  << Simulator::Now().GetSeconds()
+                  << "s] Sending Beacon Request to STA " << m_staAddress
+                  << " from current AP " << currentApBssid);
+
+    // Find the correct AP device using the currently associated BSSID
+    auto it = m_apDevices.find(currentApBssid);
+    if (it == m_apDevices.end())
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot find AP device for current BSSID " << currentApBssid);
+        return;
+    }
+    Ptr<WifiNetDevice> currentApDevice = it->second;
+
+    // Set neighbor list on beacon protocol from the last neighbor report
+    if (m_beaconProtocol && !m_lastNeighborReport.empty())
+    {
+        std::set<Mac48Address> neighborList;
+        for (const auto& neighbor : m_lastNeighborReport)
+        {
+            neighborList.insert(neighbor.bssid);
+        }
+        m_beaconProtocol->SetNeighborList(neighborList);
+        NS_LOG_INFO("STA " << m_staAddress << " set neighbor list on beacon protocol: " << neighborList.size() << " neighbors");
+    }
+
+    // Send beacon request from the CURRENT AP to STA
+    if (m_beaconProtocol && currentApDevice && m_staDevice)
+    {
+        m_beaconProtocol->SendBeaconRequest(currentApDevice, m_staAddress);
+        NS_LOG_DEBUG("Beacon Request sent from current AP " << currentApBssid << " to STA " << m_staAddress);
+    }
+    else
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot send beacon request: beacon protocol or devices not set");
+    }
+}
+
+void
+AutoRoamingKvHelper::OnBeaconReportReceived(Mac48Address apAddress,
+                                              Mac48Address staAddress,
+                                              std::vector<BeaconReportData> reports)
+{
+    NS_LOG_FUNCTION(this << apAddress << staAddress << reports.size());
+
+    // Verify callback is for this STA instance
+    if (staAddress != m_staAddress)
+    {
+        NS_LOG_DEBUG("⚠️ Ignoring beacon report for " << staAddress
+                     << " (this helper is for " << m_staAddress << ")");
+        return;  // Not for this STA, ignore
+    }
+
+    // Store the beacon report
+    m_lastBeaconReport = reports;
+
+    NS_LOG_DEBUG("\n╔════════════════════════════════════════════════════════════╗");
+    NS_LOG_DEBUG("║  BEACON REPORT RECEIVED                                    ║");
+    NS_LOG_DEBUG("╠════════════════════════════════════════════════════════════╣");
+    NS_LOG_DEBUG("║  Time: " << Simulator::Now().GetSeconds() << "s");
+    NS_LOG_DEBUG("║  STA (trace param): " << staAddress);
+    NS_LOG_DEBUG("║  STA (this helper): " << m_staAddress);
+    NS_LOG_DEBUG("║  Number of beacon candidates: " << reports.size());
+
+    if (reports.empty())
+    {
+        NS_LOG_DEBUG("║  ⚠ WARNING: No beacon candidates found!");
+        NS_LOG_DEBUG("║  Possible reasons:");
+        NS_LOG_DEBUG("║    - Dual-PHY sniffer not detecting beacons");
+        NS_LOG_DEBUG("║    - No neighbor APs in range");
+        NS_LOG_DEBUG("║    - Beacon cache empty");
+    }
+    else
+    {
+        NS_LOG_DEBUG("║  Beacon Candidates:");
+        for (size_t i = 0; i < reports.size(); i++)
+        {
+            const auto& report = reports[i];
+            double rssiDbm = RcpiToRssi(report.rcpi);
+            double snrDb = RsniToSnr(report.rsni);
+
+            NS_LOG_DEBUG("║    [" << (i + 1) << "] BSSID: " << report.bssid
+                                << " | Ch: " << (uint32_t)report.channel
+                                << " | RSSI: " << rssiDbm << " dBm"
+                                << " | SNR: " << snrDb << " dB");
+        }
+    }
+    NS_LOG_DEBUG("╚════════════════════════════════════════════════════════════╝\n");
+
+    // Always send BSS TM request if beacon reports are available
+    if (m_bssTmHelper)
+    {
+        if (!reports.empty())
+        {
+            NS_LOG_DEBUG("✓ STA " << m_staAddress << " scheduling BSS TM Request after "
+                          << m_bssTmRequestDelay.As(Time::MS) << " ms delay...\n");
+
+            Simulator::Schedule(m_bssTmRequestDelay,
+                                &AutoRoamingKvHelper::SendBssTmRequest,
+                                this);
+        }
+        else
+        {
+            NS_LOG_DEBUG("✗ STA " << m_staAddress << " BSS TM Request NOT sent - no beacon candidates available");
+            NS_LOG_DEBUG("  Automatic roaming will occur via MAC-layer mechanisms instead\n");
+        }
+    }
+}
+
+void
+AutoRoamingKvHelper::SendBssTmRequest()
+{
+    NS_LOG_FUNCTION(this);
+
+    // Get the currently associated AP
+    Mac48Address currentApBssid = GetCurrentApBssid();
+
+    if (currentApBssid.IsBroadcast() || currentApBssid == Mac48Address())
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot send BSS TM request: STA is not currently associated");
+        return;
+    }
+
+    // Find the correct AP device using the currently associated BSSID
+    auto it = m_apDevices.find(currentApBssid);
+    if (it == m_apDevices.end())
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot find AP device for current BSSID " << currentApBssid);
+        return;
+    }
+    Ptr<WifiNetDevice> currentApDevice = it->second;
+
+    if (!m_bssTmHelper || !currentApDevice || m_lastBeaconReport.empty())
+    {
+        NS_LOG_ERROR("STA " << m_staAddress << " cannot send BSS TM request: helper, device, or beacon report not available");
+        return;
+    }
+
+    NS_LOG_DEBUG("\n╔════════════════════════════════════════════════════════════╗");
+    NS_LOG_DEBUG("║  INITIATING BSS TM REQUEST CHAIN                           ║");
+    NS_LOG_DEBUG("╠════════════════════════════════════════════════════════════╣");
+    NS_LOG_DEBUG("║  Time: " << Simulator::Now().GetSeconds() << "s");
+    NS_LOG_DEBUG("║  STA: " << m_staAddress);
+    NS_LOG_DEBUG("║  From AP: " << currentApBssid << " (current association)");
+    NS_LOG_DEBUG("║  To STA: " << m_staAddress);
+    NS_LOG_DEBUG("║  Beacon candidates to rank: " << m_lastBeaconReport.size());
+    NS_LOG_DEBUG("╚════════════════════════════════════════════════════════════╝");
+
+    // Use the existing sendRankedCandidates method which handles:
+    // 1. Converting beacon reports to candidates
+    // 2. Ranking them based on RSSI/SNR/channel utilization
+    // 3. Creating BSS TM parameters
+    // 4. Sending BSS TM request
+    m_bssTmHelper->sendRankedCandidates(currentApDevice, currentApBssid, m_staAddress, m_lastBeaconReport);
+
+    NS_LOG_DEBUG("✓ STA " << m_staAddress << " BSS TM Request sent via sendRankedCandidates() with "
+                  << m_lastBeaconReport.size() << " candidates\n");
+}
+
+} // namespace ns3

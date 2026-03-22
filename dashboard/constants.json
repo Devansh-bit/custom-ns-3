@@ -1,0 +1,446 @@
+{
+  "defaultTemplates": [
+    {
+      "id": "classroom",
+      "name": "Classroom",
+      "description": "30+ clients connected to a single AP with high uplink traffic.",
+      "nodes": [
+        {
+          "id": 1,
+          "type": "ap",
+          "x": 50,
+          "y": 10,
+          "name": "AP-Class",
+          "channel": 1,
+          "power": 20
+        },
+        {
+          "id": 2,
+          "type": "client",
+          "x": 20,
+          "y": 30,
+          "name": "S-01",
+          "status": "good"
+        },
+        {
+          "id": 3,
+          "type": "client",
+          "x": 35,
+          "y": 30,
+          "name": "S-02",
+          "status": "good"
+        },
+        {
+          "id": 4,
+          "type": "client",
+          "x": 50,
+          "y": 30,
+          "name": "S-03",
+          "status": "good"
+        },
+        {
+          "id": 5,
+          "type": "client",
+          "x": 65,
+          "y": 30,
+          "name": "S-04",
+          "status": "good"
+        },
+        {
+          "id": 6,
+          "type": "client",
+          "x": 80,
+          "y": 30,
+          "name": "S-05",
+          "status": "good"
+        },
+        {
+          "id": 7,
+          "type": "client",
+          "x": 20,
+          "y": 50,
+          "name": "S-06",
+          "status": "good"
+        },
+        {
+          "id": 8,
+          "type": "client",
+          "x": 35,
+          "y": 50,
+          "name": "S-07",
+          "status": "fair"
+        },
+        {
+          "id": 9,
+          "type": "client",
+          "x": 50,
+          "y": 50,
+          "name": "S-08",
+          "status": "good"
+        },
+        {
+          "id": 10,
+          "type": "client",
+          "x": 65,
+          "y": 50,
+          "name": "S-09",
+          "status": "good"
+        },
+        {
+          "id": 11,
+          "type": "client",
+          "x": 80,
+          "y": 50,
+          "name": "S-10",
+          "status": "good"
+        },
+        {
+          "id": 12,
+          "type": "client",
+          "x": 20,
+          "y": 70,
+          "name": "S-11",
+          "status": "good"
+        },
+        {
+          "id": 13,
+          "type": "client",
+          "x": 35,
+          "y": 70,
+          "name": "S-12",
+          "status": "good"
+        },
+        {
+          "id": 14,
+          "type": "client",
+          "x": 50,
+          "y": 70,
+          "name": "S-13",
+          "status": "poor"
+        },
+        {
+          "id": 15,
+          "type": "client",
+          "x": 65,
+          "y": 70,
+          "name": "S-14",
+          "status": "good"
+        },
+        {
+          "id": 16,
+          "type": "client",
+          "x": 80,
+          "y": 70,
+          "name": "S-15",
+          "status": "good"
+        }
+      ]
+    },
+    {
+      "id": "coworking-space",
+      "name": "Coworking Space",
+      "description": "Saved from New session 2",
+      "nodes": [
+        {
+          "id": 2,
+          "type": "client",
+          "x": 15.5549322032524,
+          "y": 74.74358974358975,
+          "name": "CLIENT-2",
+          "status": "good"
+        },
+        {
+          "id": 3,
+          "type": "ble",
+          "x": 12.528026477214096,
+          "y": 67.56410256410257,
+          "name": "BLE-3",
+          "status": "good"
+        },
+        {
+          "id": 4,
+          "type": "ap",
+          "x": 12.696187906438446,
+          "y": 53.97435897435897,
+          "name": "AP-4",
+          "status": "good",
+          "channel": 36
+        },
+        {
+          "id": 5,
+          "type": "client",
+          "x": 5.88565002285226,
+          "y": 43.58974358974359,
+          "name": "CLIENT-5",
+          "status": "good"
+        },
+        {
+          "id": 7,
+          "type": "client",
+          "x": 21.44058222610466,
+          "y": 43.205128205128204,
+          "name": "CLIENT-7",
+          "status": "good"
+        },
+        {
+          "id": 8,
+          "type": "client",
+          "x": 21.860985799165537,
+          "y": 27.435897435897438,
+          "name": "CLIENT-8",
+          "status": "good"
+        },
+        {
+          "id": 11,
+          "type": "client",
+          "x": 6.137892166688785,
+          "y": 27.17948717948718,
+          "name": "CLIENT-11",
+          "status": "good"
+        },
+        {
+          "id": 12,
+          "type": "client",
+          "x": 13.789237196396723,
+          "y": 27.82051282051282,
+          "name": "CLIENT-12",
+          "status": "good"
+        },
+        {
+          "id": 13,
+          "type": "client",
+          "x": 12.94843005027497,
+          "y": 43.333333333333336,
+          "name": "CLIENT-13",
+          "status": "good"
+        },
+        {
+          "id": 14,
+          "type": "ap",
+          "x": 39.93833944078319,
+          "y": 2.564102564102564,
+          "name": "AP-14",
+          "status": "good",
+          "channel": 36
+        },
+        {
+          "id": 15,
+          "type": "zigbee",
+          "x": 38.50896729237621,
+          "y": 24.615384615384617,
+          "name": "ZIGBEE-15",
+          "status": "good"
+        },
+        {
+          "id": 16,
+          "type": "zigbee",
+          "x": 48.43049161661288,
+          "y": 37.05128205128205,
+          "name": "ZIGBEE-16",
+          "status": "good"
+        },
+        {
+          "id": 17,
+          "type": "client",
+          "x": 85.76232890441864,
+          "y": 40.51282051282051,
+          "name": "CLIENT-17",
+          "status": "good"
+        },
+        {
+          "id": 18,
+          "type": "client",
+          "x": 91.05941392498568,
+          "y": 48.84615384615385,
+          "name": "CLIENT-18",
+          "status": "good"
+        },
+        {
+          "id": 19,
+          "type": "client",
+          "x": 77.01793458475242,
+          "y": 39.743589743589745,
+          "name": "CLIENT-19",
+          "status": "good"
+        },
+        {
+          "id": 20,
+          "type": "client",
+          "x": 71.46860742034886,
+          "y": 49.358974358974365,
+          "name": "CLIENT-20",
+          "status": "good"
+        },
+        {
+          "id": 21,
+          "type": "microwave",
+          "x": 81.22197031536118,
+          "y": 21.923076923076923,
+          "name": "MICROWAVE-21",
+          "status": "good"
+        },
+        {
+          "id": 22,
+          "type": "microwave",
+          "x": 91.6479789272709,
+          "y": 32.05128205128205,
+          "name": "MICROWAVE-22",
+          "status": "good"
+        },
+        {
+          "id": 23,
+          "type": "ap",
+          "x": 80.80156674230031,
+          "y": 52.307692307692314,
+          "name": "AP-23",
+          "status": "good",
+          "channel": 36
+        },
+        {
+          "id": 24,
+          "type": "ble",
+          "x": 60.285872376929575,
+          "y": 71.92307692307692,
+          "name": "BLE-24",
+          "status": "good"
+        },
+        {
+          "id": 25,
+          "type": "client",
+          "x": 53.30717306411904,
+          "y": 64.35897435897436,
+          "name": "CLIENT-25",
+          "status": "good"
+        },
+        {
+          "id": 26,
+          "type": "client",
+          "x": 53.39125377873122,
+          "y": 75.64102564102564,
+          "name": "CLIENT-26",
+          "status": "good"
+        }
+      ]
+    },
+    {
+      "id": "meeting-room",
+      "name": "Meeting Room",
+      "description": "Saved from New session 1",
+      "nodes": [
+        {
+          "id": 5,
+          "type": "client",
+          "x": 2.8431718934118577,
+          "y": 47.02374163244525,
+          "name": "CLIENT-5",
+          "status": "good"
+        },
+        {
+          "id": 6,
+          "type": "ble",
+          "x": 10.223590176036124,
+          "y": 26.79582140452503,
+          "name": "BLE-6",
+          "status": "good"
+        },
+        {
+          "id": 7,
+          "type": "ble",
+          "x": 10.597282240979121,
+          "y": 67.25166186036549,
+          "name": "BLE-7",
+          "status": "good"
+        },
+        {
+          "id": 8,
+          "type": "ap",
+          "x": 3.3102869745906074,
+          "y": 84.77302938173301,
+          "name": "AP-8",
+          "status": "good",
+          "channel": 36
+        },
+        {
+          "id": 9,
+          "type": "ap",
+          "x": 98.32149448634851,
+          "y": 4.858499467203085,
+          "name": "AP-9",
+          "status": "good",
+          "channel": 36
+        },
+        {
+          "id": 10,
+          "type": "client",
+          "x": 32.45826804014465,
+          "y": 46.73884134754497,
+          "name": "CLIENT-10",
+          "status": "good"
+        },
+        {
+          "id": 11,
+          "type": "client",
+          "x": 87.4844246030015,
+          "y": 46.88129148999511,
+          "name": "CLIENT-11",
+          "status": "good"
+        },
+        {
+          "id": 12,
+          "type": "client",
+          "x": 44.32299110208493,
+          "y": 30.072174680878298,
+          "name": "CLIENT-12",
+          "status": "good"
+        },
+        {
+          "id": 13,
+          "type": "client",
+          "x": 58.4298665536832,
+          "y": 29.217473826177446,
+          "name": "CLIENT-13",
+          "status": "good"
+        },
+        {
+          "id": 14,
+          "type": "client",
+          "x": 71.32224279421672,
+          "y": 29.07502368372731,
+          "name": "CLIENT-14",
+          "status": "good"
+        },
+        {
+          "id": 15,
+          "type": "client",
+          "x": 44.22956808584918,
+          "y": 64.54510915381277,
+          "name": "CLIENT-15",
+          "status": "good"
+        },
+        {
+          "id": 16,
+          "type": "client",
+          "x": 58.52328956991896,
+          "y": 64.68755929626292,
+          "name": "CLIENT-16",
+          "status": "good"
+        },
+        {
+          "id": 17,
+          "type": "client",
+          "x": 72.63016502151723,
+          "y": 63.12060772931135,
+          "name": "CLIENT-17",
+          "status": "good"
+        }
+      ]
+    }
+  ],
+  "SAMPLE_LOGS": [
+    "Initializing Arista RRM-Plus Engine...",
+    "Loading site topology map...",
+    "Checking regulatory domain constraints (FCC)...",
+    "Scanning spectral environment via dedicated radio...",
+    "Baseline noise floor established at -92dBm."
+  ]
+}

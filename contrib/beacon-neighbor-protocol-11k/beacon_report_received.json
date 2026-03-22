@@ -1,0 +1,58 @@
+======================================
+BEACON REPORT RECEIVED
+======================================
+Timestamp: 0.267765 seconds
+AP Address: 00:00:00:00:00:02
+STA Address: 00:00:00:00:00:01
+Number of Reports: 4
+--------------------------------------
+Report #1:
+  BSSID: 00:00:00:00:00:03
+  Channel: 36
+  Regulatory Class: 115
+  RCPI (raw): 116
+  RSNI (raw): 84
+  Reported Frame Info: 0x7
+  Measurement Duration: 100 TUs
+  Measurement Start Time: 0
+  Antenna ID: 0
+  Parent TSF: 0
+
+Report #2:
+  BSSID: 00:00:00:00:00:04
+  Channel: 36
+  Regulatory Class: 115
+  RCPI (raw): 158
+  RSNI (raw): 126
+  Reported Frame Info: 0x7
+  Measurement Duration: 100 TUs
+  Measurement Start Time: 0
+  Antenna ID: 0
+  Parent TSF: 0
+
+Report #3:
+  BSSID: 00:00:00:00:00:05
+  Channel: 36
+  Regulatory Class: 115
+  RCPI (raw): 116
+  RSNI (raw): 84
+  Reported Frame Info: 0x7
+  Measurement Duration: 100 TUs
+  Measurement Start Time: 0
+  Antenna ID: 0
+  Parent TSF: 0
+
+Report #4:
+  BSSID: 00:00:00:00:00:06
+  Channel: 36
+  Regulatory Class: 115
+  RCPI (raw): 98
+  RSNI (raw): 66
+  Reported Frame Info: 0x7
+  Measurement Duration: 100 TUs
+  Measurement Start Time: 0
+  Antenna ID: 0
+  Parent TSF: 0
+
+======================================
+

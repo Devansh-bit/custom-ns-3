@@ -1,0 +1,22 @@
+build_lib(
+    LIBNAME waypoint-simulation
+    SOURCE_FILES
+        model/waypoint-grid.cc
+        helper/waypoint-mobility-helper.cc
+        helper/simulation-config-parser.cc
+    HEADER_FILES
+        model/waypoint-grid.h
+        helper/waypoint-mobility-helper.h
+        helper/simulation-config-parser.h
+    LIBRARIES_TO_LINK
+        ${libcore}
+        ${libnetwork}
+        ${libmobility}
+        ${libwifi}
+        ${libinternet}
+        ${libapplications}
+        ${libspectrum}
+        ${liblever-api}
+        ${libsimulation-helper}
+    TEST_SOURCES
+)

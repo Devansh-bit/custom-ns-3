@@ -1,0 +1,67 @@
+.tooltip {
+  position: fixed;
+  background: rgba(10, 10, 18, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 143, 255, 0.3);
+  border-radius: 10px;
+  padding: 14px 18px;
+  pointer-events: none;
+  z-index: 1000;
+  min-width: 240px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4f8fff;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(79, 143, 255, 0.2);
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.metric:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.value {
+  color: #fff;
+  font-weight: 500;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+.good {
+  color: #1dd1a1;
+}
+
+.warning {
+  color: #feca57;
+}
+
+.bad {
+  color: #ff6b6b;
+}

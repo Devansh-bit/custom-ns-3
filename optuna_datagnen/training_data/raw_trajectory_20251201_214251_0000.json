@@ -1,0 +1,4013 @@
+{
+  "sample_id": "0000",
+  "coordinates": {
+    "AP1": [
+      6.0,
+      0.0
+    ],
+    "AP2": [
+      -4.2,
+      -6.0
+    ],
+    "AP3": [
+      4.4,
+      4.2
+    ],
+    "AP4": [
+      -9.6,
+      -4.9
+    ]
+  },
+  "initial_config": {
+    "channels": [
+      36,
+      40,
+      44,
+      36
+    ],
+    "tx_power": [
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "obss_pd": [
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0
+    ]
+  },
+  "training_pairs": [
+    {
+      "iteration": 1,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.1,
+            "Client_count": 5,
+            "num_aps_on_channel": 1
+          },
+          "AP2": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 44,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 1
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -59.4
+          ],
+          [
+            -59.4,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -124.4,
+            -79.4,
+            -120.0
+          ],
+          [
+            -120.0,
+            0.0,
+            -120.0,
+            -79.4
+          ],
+          [
+            -79.4,
+            -124.4,
+            0.0,
+            -120.0
+          ],
+          [
+            -120.0,
+            -79.4,
+            -120.0,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.4
+          },
+          "AP3": {
+            "CHANNEL": 44,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "ap_index": 2,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 1
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.408571676918996,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 44,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 1
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -59.4
+          ],
+          [
+            -59.4,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -124.4,
+            -74.3,
+            -120.0
+          ],
+          [
+            -120.0,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -79.4,
+            -124.4,
+            0.0,
+            -120.0
+          ],
+          [
+            -120.0,
+            -79.4,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.4
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 3,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 1
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.408571676918996,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 1
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -59.4
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -124.4,
+            -74.3,
+            -120.0
+          ],
+          [
+            -123.4,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -79.4,
+            -124.4,
+            0.0,
+            -120.0
+          ],
+          [
+            -123.4,
+            -79.4,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 48,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.4
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.4
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 4,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 48,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.394113749299223,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 136,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.408571676918996,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.9,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -59.4
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.2,
+            -74.3,
+            -120.0
+          ],
+          [
+            -123.4,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -79.4,
+            -113.2,
+            0.0,
+            -120.0
+          ],
+          [
+            -123.4,
+            -68.2,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 48,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.4
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.2
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 5,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 48,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.394113749299223,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.24701393154963,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.9,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -59.4
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.2,
+            -74.3,
+            -120.0
+          ],
+          [
+            -115.5,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -71.5,
+            -113.2,
+            0.0,
+            -120.0
+          ],
+          [
+            -115.5,
+            -68.2,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 159,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 15.5
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.2
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 6,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 159,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 15.548069328139313,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.24701393154963,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.0,
+            "Channel_util": 0.9,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.2,
+            -74.3,
+            -116.7
+          ],
+          [
+            -115.5,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -71.5,
+            -113.2,
+            0.0,
+            -116.7
+          ],
+          [
+            -115.5,
+            -68.2,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 159,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 15.5
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.2
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.7
+          }
+        }
+      }
+    },
+    {
+      "iteration": 7,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 159,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 15.548069328139313,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.24701393154963,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.650906915514454,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.2,
+            -74.3,
+            -116.7
+          ],
+          [
+            -116.5,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -72.5,
+            -113.2,
+            0.0,
+            -116.7
+          ],
+          [
+            -116.5,
+            -68.2,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.2
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.7
+          }
+        }
+      }
+    },
+    {
+      "iteration": 8,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 13.24701393154963,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.650906915514454,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -116.5,
+            -74.3,
+            -116.7
+          ],
+          [
+            -116.5,
+            0.0,
+            -114.9,
+            -79.4
+          ],
+          [
+            -72.5,
+            -116.5,
+            0.0,
+            -116.7
+          ],
+          [
+            -116.5,
+            -71.5,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 56,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.7
+          }
+        }
+      }
+    },
+    {
+      "iteration": 9,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 56,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.50573578242262,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.650906915514454,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -116.5,
+            -74.3,
+            -122.4
+          ],
+          [
+            -116.5,
+            0.0,
+            -114.9,
+            -85.1
+          ],
+          [
+            -72.5,
+            -116.5,
+            0.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            -71.5,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 56,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 10,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 56,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.50573578242262,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -120.1,
+            -74.3,
+            -122.4
+          ],
+          [
+            -116.5,
+            0.0,
+            -114.9,
+            -85.1
+          ],
+          [
+            -72.5,
+            -120.1,
+            0.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            -75.1,
+            -114.9,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.1
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.9
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 11,
+      "ap_index": 2,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.108974826344507,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 46,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 14.872223685309239,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -120.1,
+            -83.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            0.0,
+            -123.6,
+            -85.1
+          ],
+          [
+            -72.5,
+            -120.1,
+            0.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            -75.1,
+            -123.6,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.1
+          },
+          "AP3": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.6
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 12,
+      "ap_index": 2,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.108974826344507,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 23.567958361706655,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -120.1,
+            -72.7,
+            -122.4
+          ],
+          [
+            -116.5,
+            0.0,
+            -113.3,
+            -85.1
+          ],
+          [
+            -72.5,
+            -120.1,
+            0.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            -75.1,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 13,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.108974826344507,
+            "Channel_util": 0.4,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -122.4
+          ],
+          [
+            -116.5,
+            0.0,
+            -113.3,
+            -85.1
+          ],
+          [
+            -72.5,
+            -121.3,
+            0.0,
+            -122.4
+          ],
+          [
+            -116.5,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.5
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 14,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 140,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.494749682376504,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -122.4
+          ],
+          [
+            -124.8,
+            0.0,
+            -113.3,
+            -85.1
+          ],
+          [
+            -80.8,
+            -121.3,
+            0.0,
+            -122.4
+          ],
+          [
+            -124.8,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.8
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.4
+          }
+        }
+      }
+    },
+    {
+      "iteration": 15,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.834496812785293,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 149,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 22.422111536716162,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -124.9
+          ],
+          [
+            -124.8,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -80.8,
+            -121.3,
+            0.0,
+            -124.9
+          ],
+          [
+            -124.8,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.8
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 16,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.834496812785293,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -56.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -124.9
+          ],
+          [
+            -120.2,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -76.2,
+            -121.3,
+            0.0,
+            -124.9
+          ],
+          [
+            -120.2,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.2
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 17,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.23132313913626,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.4,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.4,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -58.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -124.9
+          ],
+          [
+            -120.5,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -79.4,
+            -121.3,
+            0.0,
+            -124.9
+          ],
+          [
+            -120.5,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.5
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 19,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.308886361204937,
+            "Channel_util": 0.6,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.4,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -124.9
+          ],
+          [
+            -119.5,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -79.4,
+            -121.3,
+            0.0,
+            -124.9
+          ],
+          [
+            -119.5,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 104,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.5
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 20,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 104,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.521058403994296,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.4,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -55.0,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -121.3,
+            -72.7,
+            -124.9
+          ],
+          [
+            -118.4,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -78.3,
+            -121.3,
+            0.0,
+            -124.9
+          ],
+          [
+            -118.4,
+            -76.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.4
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.3
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 21,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.418207286265766,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 21.279697679897332,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -66.3,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.1,
+            -72.7,
+            -124.9
+          ],
+          [
+            -118.4,
+            0.0,
+            -113.3,
+            -87.6
+          ],
+          [
+            -78.3,
+            -113.1,
+            0.0,
+            -124.9
+          ],
+          [
+            -118.4,
+            -79.4,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.4
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.9
+          }
+        }
+      }
+    },
+    {
+      "iteration": 22,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.418207286265766,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.098508076971335,
+            "Channel_util": 0.9,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 118,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 24.879492585177406,
+            "Channel_util": 0.4,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -66.3,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.1,
+            -72.7,
+            -114.0
+          ],
+          [
+            -118.4,
+            0.0,
+            -113.3,
+            -76.7
+          ],
+          [
+            -78.3,
+            -113.1,
+            0.0,
+            -114.0
+          ],
+          [
+            -118.4,
+            -79.4,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.4
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 14.0
+          }
+        }
+      }
+    },
+    {
+      "iteration": 23,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.418207286265766,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.098508076971335,
+            "Channel_util": 0.9,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 155,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 14.034834403361948,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -66.3,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.1,
+            -72.7,
+            -120.3
+          ],
+          [
+            -118.4,
+            0.0,
+            -113.3,
+            -83.0
+          ],
+          [
+            -78.3,
+            -113.1,
+            0.0,
+            -120.3
+          ],
+          [
+            -118.4,
+            -79.4,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.4
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 24,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 120,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.418207286265766,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.098508076971335,
+            "Channel_util": 0.9,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.32744530942495,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -66.3,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.1,
+            -72.7,
+            -120.3
+          ],
+          [
+            -118.1,
+            0.0,
+            -113.3,
+            -83.0
+          ],
+          [
+            -78.0,
+            -113.1,
+            0.0,
+            -120.3
+          ],
+          [
+            -118.1,
+            -79.4,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.1
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 25,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.089716066482122,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.098508076971335,
+            "Channel_util": 0.9,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 40,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.32744530942495,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -66.3,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -113.1,
+            -72.7,
+            -117.6
+          ],
+          [
+            -118.1,
+            0.0,
+            -113.3,
+            -80.3
+          ],
+          [
+            -78.0,
+            -113.1,
+            0.0,
+            -117.6
+          ],
+          [
+            -118.1,
+            -79.4,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.1
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.1
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 17.6
+          }
+        }
+      }
+    },
+    {
+      "iteration": 26,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.089716066482122,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.098508076971335,
+            "Channel_util": 0.9,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 17.61961483746864,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -124.9,
+            -72.7,
+            -117.6
+          ],
+          [
+            -118.1,
+            0.0,
+            -113.3,
+            -80.3
+          ],
+          [
+            -78.0,
+            -124.9,
+            0.0,
+            -117.6
+          ],
+          [
+            -118.1,
+            -79.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.1
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.9
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 17.6
+          }
+        }
+      }
+    },
+    {
+      "iteration": 27,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.089716066482122,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.940524718348435,
+            "Channel_util": 0.4,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 157,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 17.61961483746864,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -124.9,
+            -72.7,
+            -113.3
+          ],
+          [
+            -118.1,
+            0.0,
+            -113.3,
+            -76.0
+          ],
+          [
+            -78.0,
+            -124.9,
+            0.0,
+            -113.3
+          ],
+          [
+            -118.1,
+            -79.3,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.1
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.9
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 28,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.089716066482122,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 138,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 24.940524718348435,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.3,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -59.9,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -116.7,
+            -72.7,
+            -113.3
+          ],
+          [
+            -118.1,
+            0.0,
+            -113.3,
+            -76.0
+          ],
+          [
+            -78.0,
+            -116.7,
+            0.0,
+            -113.3
+          ],
+          [
+            -118.1,
+            -71.1,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.1
+          },
+          "AP2": {
+            "CHANNEL": 112,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.7
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 29,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 132,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 18.089716066482122,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 112,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.67493108759766,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -60.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -116.7,
+            -72.7,
+            -113.3
+          ],
+          [
+            -119.4,
+            0.0,
+            -113.3,
+            -76.0
+          ],
+          [
+            -79.4,
+            -116.7,
+            0.0,
+            -113.3
+          ],
+          [
+            -119.4,
+            -71.1,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.4
+          },
+          "AP2": {
+            "CHANNEL": 112,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.7
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 30,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.367829587388794,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 112,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 16.67493108759766,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.4,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -59.4,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -60.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -122.2,
+            -72.7,
+            -113.3
+          ],
+          [
+            -119.4,
+            0.0,
+            -113.3,
+            -76.0
+          ],
+          [
+            -79.4,
+            -122.2,
+            0.0,
+            -113.3
+          ],
+          [
+            -119.4,
+            -76.6,
+            -113.3,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.4
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.2
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.3
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 31,
+      "ap_index": 2,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.367829587388794,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.164968738978235,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 122,
+            "CHANNEL_WIDTH_MHZ": 80,
+            "AP_POWER": 13.315324115153459,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -54.7,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -60.0,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -122.2,
+            -79.4,
+            -113.3
+          ],
+          [
+            -119.4,
+            0.0,
+            -124.7,
+            -76.0
+          ],
+          [
+            -79.4,
+            -122.2,
+            0.0,
+            -113.3
+          ],
+          [
+            -119.4,
+            -76.6,
+            -124.7,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.4
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.2
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.7
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 32,
+      "ap_index": 0,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 116,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 19.367829587388794,
+            "Channel_util": 0.1,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.164968738978235,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.721316943485675,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -54.7,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -58.7,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -122.2,
+            -79.4,
+            -113.3
+          ],
+          [
+            -120.6,
+            0.0,
+            -124.7,
+            -76.0
+          ],
+          [
+            -79.3,
+            -122.2,
+            0.0,
+            -113.3
+          ],
+          [
+            -120.6,
+            -76.6,
+            -124.7,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.6
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.2
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.7
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.3
+          }
+        }
+      }
+    },
+    {
+      "iteration": 33,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.639618184332665,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.164968738978235,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.721316943485675,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 144,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 13.329904127164276,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -54.7,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -58.7,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -122.2,
+            -79.4,
+            -120.5
+          ],
+          [
+            -120.6,
+            0.0,
+            -124.7,
+            -83.2
+          ],
+          [
+            -79.3,
+            -122.2,
+            0.0,
+            -120.5
+          ],
+          [
+            -120.6,
+            -76.6,
+            -124.7,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.6
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.2
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.7
+          },
+          "AP4": {
+            "CHANNEL": 126,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 20.5
+          }
+        }
+      }
+    },
+    {
+      "iteration": 34,
+      "ap_index": 1,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.639618184332665,
+            "Channel_util": 0.2,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 62,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 22.164968738978235,
+            "Channel_util": 0.3,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.721316943485675,
+            "Channel_util": 0.2,
+            "Client_count": 4,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 126,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 20.517746962619395,
+            "Channel_util": 0.4,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -54.7,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -58.7,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -117.0,
+            -79.4,
+            -120.5
+          ],
+          [
+            -120.6,
+            0.0,
+            -124.7,
+            -83.2
+          ],
+          [
+            -79.3,
+            -117.0,
+            0.0,
+            -120.5
+          ],
+          [
+            -120.6,
+            -71.4,
+            -124.7,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.6
+          },
+          "AP2": {
+            "CHANNEL": 134,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 17.0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.7
+          },
+          "AP4": {
+            "CHANNEL": 126,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 20.5
+          }
+        }
+      }
+    },
+    {
+      "iteration": 35,
+      "ap_index": 3,
+      "X": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.639618184332665,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP2": {
+            "CHANNEL": 134,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 16.993889954394014,
+            "Channel_util": 0.3,
+            "Client_count": 6,
+            "num_aps_on_channel": 0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.721316943485675,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          },
+          "AP4": {
+            "CHANNEL": 126,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 20.517746962619395,
+            "Channel_util": 0.2,
+            "Client_count": 5,
+            "num_aps_on_channel": 0
+          }
+        },
+        "rssi_matrix": [
+          [
+            0.0,
+            -100.0,
+            -54.7,
+            -100.0
+          ],
+          [
+            -100.0,
+            0.0,
+            -100.0,
+            -62.7
+          ],
+          [
+            -58.7,
+            -100.0,
+            0.0,
+            -100.0
+          ],
+          [
+            -100.0,
+            -54.4,
+            -100.0,
+            0.0
+          ]
+        ],
+        "channel_gain_matrix": [
+          [
+            0.0,
+            -117.0,
+            -79.4,
+            -124.6
+          ],
+          [
+            -120.6,
+            0.0,
+            -124.7,
+            -87.3
+          ],
+          [
+            -79.3,
+            -117.0,
+            0.0,
+            -124.6
+          ],
+          [
+            -120.6,
+            -71.4,
+            -124.7,
+            0.0
+          ]
+        ]
+      },
+      "Y": {
+        "aps": {
+          "AP1": {
+            "CHANNEL": 64,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 20.6
+          },
+          "AP2": {
+            "CHANNEL": 134,
+            "CHANNEL_WIDTH_MHZ": 40,
+            "AP_POWER": 17.0
+          },
+          "AP3": {
+            "CHANNEL": 36,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.7
+          },
+          "AP4": {
+            "CHANNEL": 108,
+            "CHANNEL_WIDTH_MHZ": 20,
+            "AP_POWER": 24.6
+          }
+        }
+      }
+    }
+  ],
+  "final_config": {
+    "channels": [
+      64,
+      134,
+      36,
+      108
+    ],
+    "tx_power": [
+      20.639618184332665,
+      16.993889954394014,
+      24.721316943485675,
+      24.582790214550336
+    ],
+    "obss_pd": [
+      -79.73573039989493,
+      -65.99193044096222,
+      -79.73641571238153,
+      -65.31881372455562
+    ]
+  },
+  "metadata": {
+    "timestamp": "2025-12-01T21:42:51.119145",
+    "total_trials": 36,
+    "best_objective": 0.739807,
+    "simulation_id": "basic-sim"
+  }
+}

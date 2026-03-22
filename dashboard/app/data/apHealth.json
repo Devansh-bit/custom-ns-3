@@ -1,0 +1,5 @@
+[
+  { "review": "Good", "percent": 50, "fill": "var(--color-good)" },
+  { "review": "Fair", "percent": 30, "fill": "var(--color-fair)" },
+  { "review": "Poor", "percent": 20, "fill": "var(--color-poor)" }
+]

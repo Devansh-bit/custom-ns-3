@@ -1,0 +1,251 @@
+{
+  "simulationTime": 86400,
+  "clock-time": 12,
+  "aps": [
+    {"nodeId": 0, "position": {"x": -8, "y": -5.9, "z": 3.4}, "leverConfig": {"txPower": 17.0, "channel": 44, "ccaThreshold": -82.0, "obsspdThreshold": -71.0}},
+    {"nodeId": 1, "position": {"x": 8, "y": -5.9, "z": 3.4}, "leverConfig": {"txPower": 17.0, "channel": 1, "ccaThreshold": -82.0, "obsspdThreshold": -65.8}},
+    {"nodeId": 2, "position": {"x": -8, "y": 5.9, "z": 4.1}, "leverConfig": {"txPower": 17.0, "channel": 6, "ccaThreshold": -82.0, "obsspdThreshold": -79.6}},
+    {"nodeId": 3, "position": {"x": 8, "y": 5.9, "z": 4.1}, "leverConfig": {"txPower": 17.0, "channel": 11, "ccaThreshold": -82.0, "obsspdThreshold": -60.6}}
+  ],
+  "waypoints": [
+    {"id": 0, "x": -8.0, "y": -8.0, "z": 1.5},
+    {"id": 1, "x": -4.0, "y": -8.0, "z": 1.5},
+    {"id": 2, "x": 0.0, "y": -8.0, "z": 1.5},
+    {"id": 3, "x": 4.0, "y": -8.0, "z": 1.5},
+    {"id": 4, "x": 8.0, "y": -8.0, "z": 1.5},
+    {"id": 5, "x": -8.0, "y": -4.0, "z": 1.5},
+    {"id": 6, "x": -4.0, "y": -4.0, "z": 1.5},
+    {"id": 7, "x": 0.0, "y": -4.0, "z": 1.5},
+    {"id": 8, "x": 4.0, "y": -4.0, "z": 1.5},
+    {"id": 9, "x": 8.0, "y": -4.0, "z": 1.5},
+    {"id": 10, "x": -8.0, "y": 0.0, "z": 1.5},
+    {"id": 11, "x": -4.0, "y": 0.0, "z": 1.5},
+    {"id": 12, "x": 0.0, "y": 0.0, "z": 1.5},
+    {"id": 13, "x": 4.0, "y": 0.0, "z": 1.5},
+    {"id": 14, "x": 8.0, "y": 0.0, "z": 1.5},
+    {"id": 15, "x": -8.0, "y": 4.0, "z": 1.5},
+    {"id": 16, "x": -4.0, "y": 4.0, "z": 1.5},
+    {"id": 17, "x": 0.0, "y": 4.0, "z": 1.5},
+    {"id": 18, "x": 4.0, "y": 4.0, "z": 1.5},
+    {"id": 19, "x": 8.0, "y": 4.0, "z": 1.5},
+    {"id": 20, "x": -8.0, "y": 8.0, "z": 1.5},
+    {"id": 21, "x": -4.0, "y": 8.0, "z": 1.5},
+    {"id": 22, "x": 0.0, "y": 8.0, "z": 1.5},
+    {"id": 23, "x": 4.0, "y": 8.0, "z": 1.5},
+    {"id": 24, "x": 8.0, "y": 8.0, "z": 1.5}
+  ],
+  "stas": [
+    {"nodeId": 4, "initialWaypointId": 0, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 5, "initialWaypointId": 1, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 6, "initialWaypointId": 2, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 7, "initialWaypointId": 3, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 8, "initialWaypointId": 4, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 9, "initialWaypointId": 5, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 10, "initialWaypointId": 6, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 11, "initialWaypointId": 7, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 12, "initialWaypointId": 8, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 13, "initialWaypointId": 9, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 14, "initialWaypointId": 10, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 15, "initialWaypointId": 11, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 16, "initialWaypointId": 12, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 17, "initialWaypointId": 13, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 18, "initialWaypointId": 14, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 19, "initialWaypointId": 15, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 20, "initialWaypointId": 16, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 21, "initialWaypointId": 17, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 22, "initialWaypointId": 18, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 23, "initialWaypointId": 19, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 24, "initialWaypointId": 20, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 25, "initialWaypointId": 21, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 26, "initialWaypointId": 22, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 27, "initialWaypointId": 23, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 28, "initialWaypointId": 24, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 29, "initialWaypointId": 0, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 30, "initialWaypointId": 1, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 31, "initialWaypointId": 2, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 32, "initialWaypointId": 3, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0},
+    {"nodeId": 33, "initialWaypointId": 4, "waypointSwitchTimeMin": 6.0, "waypointSwitchTimeMax": 60.0, "transferVelocityMin": 3.0, "transferVelocityMax": 3.0}
+  ],
+  "interference": {
+    "enabled": false,
+    "position": {"x": 0.0, "y": 0.0, "z": 0.0},
+    "numSources": 3,
+    "startTime": 10.0,
+    "centerFrequencyGHz": 5.2,
+    "bandwidthMHz": 100.0,
+    "powerPsdDbmHz": -50.0
+  },
+  "virtualInterferers": {
+    "enabled": true,
+    "updateInterval": 0.1,
+    "interferers": [
+      {
+        "_comment": "Microwave - Wide band interference at 2.45 GHz - affects 2.4 GHz channels",
+        "type": "microwave",
+        "position": {"x": 0.0, "y": 0.0, "z": 3.5},
+        "txPowerDbm": 10.0,
+        "bandwidthMHz": 100.0,
+        "dutyCycle": 0.5,
+        "startTime": 5.0,
+        "startTimeJitter": 5.0,
+        "active": true,
+        "schedule": {"onDuration": 2.5, "offDuration": 0.5}
+      },
+      {
+        "_comment": "Cordless Phone - Narrowband hopping in 2.4 GHz - affects CH 1,6,11",
+        "type": "cordless",
+        "position": {"x": 3.0, "y": 3.0, "z": 3.7},
+        "txPowerDbm": 12.0,
+        "numHops": 100,
+        "hopInterval": 0.01,
+        "bandwidthMhz": 1.728,
+        "hoppingSeed": 42,
+        "useRandomSeed": true,
+        "startTime": 3.0,
+        "startTimeJitter": 4.0,
+        "active": true,
+        "schedule": {"onDuration": 3.0, "offDuration": 1.0}
+      },
+      {
+        "_comment": "Bluetooth - Frequency hopping across 2.4 GHz band - affects CH 1,6,11",
+        "type": "bluetooth",
+        "position": {"x": -3.0, "y": 3.0, "z": 3.7},
+        "txPowerDbm": 8.0,
+        "dutyCycle": 0.45,
+        "hoppingSeed": 55,
+        "useRandomSeed": true,
+        "startTime": 2.0,
+        "startTimeJitter": 3.0,
+        "active": true,
+        "schedule": {"onDuration": 2.0, "offDuration": 1.0}
+      },
+      {
+        "_comment": "DFS Radar - 5 GHz band pulsed interference - RARE: starts at ~25s, short bursts with long gaps",
+        "type": "radar",
+        "position": {"x": -20.0, "y": 0.0, "z": 10.0},
+        "txPowerDbm": 25.0,
+        "dfsChannel": 52,
+        "startTime": 3600.0,
+        "startTimeJitter": 1800.0,
+        "active": true,
+        "schedule": {"onDuration": 5.0, "offDuration": 10800.0},
+        "channelHopping": {
+          "dfsChannels": [52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144],
+          "hopIntervalSec": 3.0,
+          "randomHopping": true
+        },
+        "widebandSpan": {"spanLength": 2, "maxSpanLength": 4, "randomSpan": true}
+      },
+      {
+        "_comment": "ZigBee sensor network - overlaps with WiFi CH 1",
+        "type": "zigbee",
+        "position": {"x": -5.0, "y": -5.0, "z": 1.0},
+        "txPowerDbm": 5.0,
+        "zigbeeChannel": 11,
+        "dutyCycle": 0.1,
+        "startTime": 1.0,
+        "startTimeJitter": 2.0,
+        "active": true,
+        "schedule": {"onDuration": 1.5, "offDuration": 0.5}
+      }
+    ]
+  },
+  "system_config": {
+    "scanning_channels": [1, 6, 11, 36, 40, 44, 48, 38, 46, 42, 52, 56, 60, 64, 54, 62, 58, 100, 104, 108, 112, 102, 110, 106, 116, 120, 124, 128, 118, 126, 122, 132, 136, 140, 144, 134, 142, 138, 149, 153, 157, 161, 151, 159, 155],
+    "bss_orchestration_rssi_threshold": -62,
+    "channelHopDurationMs": 300
+  },
+  "aci": {
+    "_comment": "Adjacent Channel Interference (ACI) analytical simulation",
+    "enabled": true,
+    "pathLossExponent": 3.0,
+    "maxInterferenceDistanceM": 50.0,
+    "clientWeightFactor": 0.1,
+    "degradation": {
+      "throughputFactor": 0.3,
+      "packetLossFactor": 5.0,
+      "latencyFactor": 0.5,
+      "jitterFactor": 0.4,
+      "channelUtilFactor": 0.15
+    }
+  },
+  "ofdma": {
+    "_comment": "OFDMA effects simulation - applies QoE improvements based on STA count per AP",
+    "enabled": true,
+    "minStasForBenefit": 2,
+    "saturationStaCount": 9,
+    "improvement": {
+      "throughputFactor": 0.35,
+      "latencyFactor": 0.45,
+      "jitterFactor": 0.50,
+      "packetLossFactor": 0.20,
+      "channelUtilFactor": 0.25
+    }
+  },
+  "channelScoring": {
+    "enabled": true,
+    "weights": {
+      "bssid": 0.1192,
+      "rssi": 0.4875,
+      "nonWifi": 0.3898,
+      "overlap": 0.0036
+    },
+    "nonWifiDiscardThreshold": 65.0,
+    "nonWifiTriggerThreshold": 65.0,
+    "dfsBlacklistDurationSec": 30.0,
+    "channelSwitchCooldownSec": 15.0
+  },
+  "powerScoring": {
+    "enabled": true,
+    "updateInterval": 1.0,
+    "t1IntervalSec": 10.0,
+    "t2IntervalSec": 2.0,
+    "margin": 3.0,
+    "gamma": 0.7,
+    "alpha": 0.3,
+    "ofcThreshold": 500.0,
+    "obsspdMinDbm": -82.0,
+    "obsspdMaxDbm": -62.0,
+    "txPowerRefDbm": 20.0,
+    "txPowerMinDbm": 10.0,
+    "nonWifiThresholdPercent": 50.0,
+    "nonWifiHysteresis": 10.0,
+    "rlPowerMarginDbm": 2.0
+  },
+  "staChannelHopping": {
+    "_comment": "Client health monitoring and emergency reconnect for orphaned STAs",
+    "enabled": true,
+    "scanningDelaySec": 5.0,
+    "minimumSnrDb": 0.0
+  },
+  "loadBalancing": {
+    "enabled": false,
+    "channelUtilThreshold": 70.0,
+    "intervalSec": 10.0,
+    "cooldownSec": 30.0
+  },
+  "clientSchedule": {
+    "_comment": "Time-based client scheduling - clients arrive/depart based on hour of day",
+    "enabled": false,
+    "simulationTimePerDay": 300,
+    "startHour": 0,
+    "parkingZone": {
+      "x": 500.0,
+      "y": 500.0,
+      "z": 1.5
+    },
+    "transitionVelocity": 100.0,
+    "arrivalJitterMaxSec": 2.0,
+    "departureJitterMaxSec": 2.0,
+    "schedule": [
+      {"hourStart": 0,  "hourEnd": 2,  "activeClients": 2,  "_comment": "Night: 12AM-6AM"},
+      {"hourStart": 2,  "hourEnd": 4,  "activeClients": 4,  "_comment": "Early morning: 6AM-8AM"},
+      {"hourStart": 4,  "hourEnd": 6, "activeClients": 15, "_comment": "Morning: 8AM-12PM"},
+      {"hourStart": 6, "hourEnd": 14, "activeClients": 20, "_comment": "Midday: 12PM-2PM"},
+      {"hourStart": 14, "hourEnd": 16, "activeClients": 30, "_comment": "Peak afternoon: 2PM-4PM"},
+      {"hourStart": 16, "hourEnd": 18, "activeClients": 20, "_comment": "Late afternoon: 4PM-6PM"},
+      {"hourStart": 18, "hourEnd": 22, "activeClients": 15, "_comment": "Evening: 6PM-10PM"},
+      {"hourStart": 22, "hourEnd": 24, "activeClients": 8,  "_comment": "Night: 10PM-12AM"}
+    ]
+  }
+}

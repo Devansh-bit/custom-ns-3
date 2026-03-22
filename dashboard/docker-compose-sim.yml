@@ -1,0 +1,41 @@
+x-podman:
+  in_pod: false
+
+services:
+  ns3:
+    image: ns3
+    command: ["--kafkaBroker=kafka", "--config=${CONFIG_FILE}", "--kafkaTopic=${KAFKA_TOPIC}", "--simulationId=${KAFKA_TOPIC}", "--logging=true"]
+    environment:
+      KAFKA_TOPIC: ${KAFKA_TOPIC:-ns3-metrics}
+      CONFIG_FILE: "${CONFIG_FILE:-./config/config-simulation.json}"
+      KAFKA_BROKER: kafka
+    networks:
+      - ns3-network
+    userns_mode: keep-id:uid=1001,gid=1001
+    volumes:
+      - ~/config:/home/ns3-user/ns3/config:z
+    depends_on:
+      api:
+        condition: service_healthy
+
+  api:
+    image: ns3_sim_api
+    ports:
+      - "${API_PORT}:8000"
+    networks:
+      - ns3-network
+    environment:
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      KAFKA_TOPIC: ${KAFKA_TOPIC:-ns3-metrics}
+    command: ["python", "simulation.py", "--migrate", "--dbname", "${DB_NAME}", "--kafka-topic", "${KAFKA_TOPIC}"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  ns3-network:
+    external: true

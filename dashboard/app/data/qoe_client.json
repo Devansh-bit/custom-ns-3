@@ -1,0 +1,11 @@
+[
+  { "channel": 0, "teal": 85, "yellow": 60, "purple": 55, "red": 25 },
+  { "channel": 1, "teal": 78, "yellow": 62, "purple": 58, "red": 20 },
+  { "channel": 2, "teal": 92, "yellow": 58, "purple": 50, "red": 32 },
+  { "channel": 3, "teal": 98, "yellow": 63, "purple": 60, "red": 45 },
+  { "channel": 4, "teal": 88, "yellow": 60, "purple": 52, "red": 35 },
+  { "channel": 5, "teal": 82, "yellow": 64, "purple": 58, "red": 28 },
+  { "channel": 6, "teal": 90, "yellow": 62, "purple": 54, "red": 38 },
+  { "channel": 7, "teal": 85, "yellow": 66, "purple": 60, "red": 30 },
+  { "channel": 8, "teal": 88, "yellow": 64, "purple": 56, "red": 35 }
+]

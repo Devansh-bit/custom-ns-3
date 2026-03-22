@@ -1,0 +1,33 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    # Check if librdkafka is available
+    if not bld.env['LIB_RDKAFKA']:
+        bld.env['LIB_RDKAFKA'] = ['rdkafka++', 'rdkafka']
+
+    module = bld.create_ns3_module('kafka-producer', ['core', 'network', 'wifi', 'applications'])
+    module.source = [
+        'model/kafka-producer.cc',
+        'helper/kafka-producer-helper.cc',
+    ]
+
+    module_test = bld.create_ns3_module_test_library('kafka-producer')
+    module_test.source = []
+
+    headers = bld(features='ns3header')
+    headers.module = 'kafka-producer'
+    headers.source = [
+        'model/kafka-producer.h',
+        'helper/kafka-producer-helper.h',
+    ]
+
+    # Link with librdkafka C++ library
+    if bld.env['LIB_RDKAFKA']:
+        module.use.extend(['RDKAFKA'])
+        module.uselib = 'RDKAFKA'
+        bld.env.append_value('LIB_RDKAFKA', ['rdkafka++', 'rdkafka'])
+
+    # Add library paths for librdkafka
+    module.lib = ['rdkafka++', 'rdkafka']
+
+    return

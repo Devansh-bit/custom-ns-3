@@ -1,0 +1,5 @@
+[
+  { "device": "Varun's Macbook Air M1", "snr": 60, "rssi": -80, "latency": 80, "jitter": 15, "packetLoss": 15 },
+  { "device": "Farhan's HP Victus",     "snr": 70, "rssi": -70, "latency": 90, "jitter": 17, "packetLoss": 17 },
+  { "device": "Devansh's Lenovo Legion Pro 5","snr": 80,"rssi": -80,"latency": 99,"jitter": 13,"packetLoss": 13 }
+]
